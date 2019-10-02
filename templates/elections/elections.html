@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Élections municipales 2019" %}{% endblock %}
+{% block title %}{% trans "Élections municipales 2019" %}{% endblock %}
+
+{% block extra_css %}
+<!-- ICI, ON PEUT CALLER DES FICHIERS CSS SUPPLÉMENTAIRES, SI ON NE VEUT PAS MODIFIER DES FICHIERS EXISTANTS -->
+<!-- PAS DE JAVASCRIPT, CE QUI EST ICI VA ÊTRE COMPILÉ, SEUL LE CSS PEUT L'ÊTRE -->
+{% endblock %}
+
+
+{% block extra_head %}
+<!-- DU STOCK DE PLUS POUR LE HEAD. ON PEUT AJOUTER DES JS ICI -->
+{% endblock %}
+
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block content %}
+
+<!--
+    ENTIÈRETÉ DU BLOCK ENTRE LE HEADER ET LE FOOTER
+    POUR REFAIRE UN NOUVEAU DESIGN EN GARDANT DES ÉLÉMENTS DE BASE GÉNÉRÉS PAR LE CODE PYTHON
+    DUPLIQUER BASE.HTML, LUI DONNER UN AUTRE NOM, ET CHANGER LE "EXTENDS" AU TOP DE CE FICHIER.
+    TOUT CE QUI EST DANS DES BALISES BLOCK XXXX PEUT ÊTRE MODIFIÉ PAR HÉRITAGE
+-->
+	
+		<!-- Elections -->
+		<div class="container">
+			<div class="row spacer-bottom-sm">
+				<div class="col-md-12">
+					<img src="../static/images/header_elections.jpg" alt="Élections" class="img-responsive img-full" />
+				</div>
+			</div>
+			
+			<div class="row spacer-bottom-lg">
+				<div class="col-md-4">
+					<div class="electionSub">
+						<a href="/elections-informations" class="electionBtn electionBtn--sm">
+							<img src="../static/images/02ico.svg" />
+							<p>Obtenir de<br> l'information</p>
+						</a>
+						<ul class="list-unstyled electionSub__menu">
+							<li><a href="/elections-informations#section01" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Conseil municipal et élus</a></li>
+							<li><a href="/elections-informations#section02" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Calendrier électoral 2019</a></li>
+							<li><a href="/elections-informations#section03" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Foire aux questions</a></li>
+						</ul>						
+					</div>
+				</div>	
+				<div class="col-md-4">
+					<div class="electionSub">
+						<a href="/elections-candidature" class="electionBtn electionBtn--sm">
+							<img src="../static/images/03ico.svg" />
+							<p>Je pose ma<br> candidature</p>
+						</a>
+						<ul class="list-unstyled electionSub__menu">
+							<li><a href="/elections-candidature#accordion1" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Êtes-vous éligible</a></li>
+							<li><a href="/elections-candidature#accordion2" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Types de candidatures</a></li>
+							<li><a href="/elections-candidature#accordion3" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Déclaration de candidature</a></li>
+						</ul>
+					</div>
+				</div>								
+				<div class="col-md-4">
+					<a href="/elections-resultats" class="electionBtn electionBtn--sm">
+						<img src="../static/images/01ico.svg" />
+						<p>Les<br> résultats</p>
+					</a>
+				</div>								
+			</div>		
+			
+			<div class="row">
+				<div class="col-md-12">
+					<h3>Mot du président d'élection</h3>
+					<p>Chères Joséphoises, chers Joséphois,</p>
+					<p>Suivant la démission officielle de Nicolas Villeneuve, conseiller du district 5, plus de 12 mois avant le jour fixé pour le scrutin de la prochaine élection générale, une élection partielle doit être tenue pour les électeurs du district 5, du Berceau. En tant que président d’élection, je me dois de vous offrir le plus de renseignements possibles sur cette élection.</p>
+					<p><strong>Les électeurs du district 5, du Berceau, sont ainsi appelés aux urnes afin d’élire un nouveau représentant, le 10 novembre prochain</strong>. Tout citoyen joséphois âgé de plus de 18 ans, résidant à l’intérieur des limites du district 5 et qui remplit les conditions pour être inscrit sur la liste électorale, est apte à faire valoir son droit de vote.</p>
+					<p>Au terme du scrutin, une personne sera élue afin de vous représenter lors des séances du conseil municipal, et de se porter porte-parole de vos besoins et de vos attentes en ce qui concerne la vie à Saint-Joseph-du-Lac.</p>
+					<p><strong>Toute personne éligible peut poser sa candidature au poste de conseiller(ère) du district 5</strong>. Les personnes intéressées sont priées de consulter le site www.sjdl.qc.ca/elections avant de communiquer avec moi.</p>
+					<p>L’exercice du droit de vote est un privilège, et je vous invite fortement à vous en prévaloir, soit lors du vote par anticipation du 3 novembre ou lors du jour du scrutin, le 10 novembre prochain. C’est votre droit!</p>
+					<p><strong>Stéphane Giguère<br>Président d’élection<br>Municipalité de Saint-Joseph-du-Lac</strong></p>
+				</div>
+			</div>	
+			
+			
+			<div class="row">
+				<div class="col-md-12">
+					<h3>Carte</h3>
+					<img src="../static/images/carte.jpg" alt="Carte" class="img-responsive" />
+				</div>
+			</div>			
+			
+		</div><!-- Elections -->
+
+{% endblock %}
+
+{% block extra_footer %}
+<script>
+	
+	// Submenu
+	$('.electionSub').hover(
+		function() {
+			$(this).find('a').addClass('active');
+			$(this).find('ul').addClass('is-active');
+		}, function() {
+			$(this).find('a').removeClass('active');
+			$(this).find('ul').removeClass('is-active');
+		}
+	);	
+
+</script>
+{% endblock %}
+
+

@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Élections Résultats 2019" %}{% endblock %}
+{% block title %}{% trans "Élections Résultats 2019" %}{% endblock %}
+
+{% block extra_css %}
+<!-- ICI, ON PEUT CALLER DES FICHIERS CSS SUPPLÉMENTAIRES, SI ON NE VEUT PAS MODIFIER DES FICHIERS EXISTANTS -->
+<!-- PAS DE JAVASCRIPT, CE QUI EST ICI VA ÊTRE COMPILÉ, SEUL LE CSS PEUT L'ÊTRE -->
+{% endblock %}
+
+
+{% block extra_head %}
+<!-- DU STOCK DE PLUS POUR LE HEAD. ON PEUT AJOUTER DES JS ICI -->
+{% endblock %}
+
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block content %}
+
+<!--
+    ENTIÈRETÉ DU BLOCK ENTRE LE HEADER ET LE FOOTER
+    POUR REFAIRE UN NOUVEAU DESIGN EN GARDANT DES ÉLÉMENTS DE BASE GÉNÉRÉS PAR LE CODE PYTHON
+    DUPLIQUER BASE.HTML, LUI DONNER UN AUTRE NOM, ET CHANGER LE "EXTENDS" AU TOP DE CE FICHIER.
+    TOUT CE QUI EST DANS DES BALISES BLOCK XXXX PEUT ÊTRE MODIFIÉ PAR HÉRITAGE
+-->
+
+
+		<!-- Elections Header -->
+		<div class="container">
+			<div class="row spacer-bottom-sm">
+				<div class="col-md-12">
+					<a href="/elections"><img src="../static/images/header_elections.jpg" alt="Élections" class="img-responsive img-full" /></a>
+				</div>
+			</div>
+			
+			<div class="row spacer-bottom-lg">
+				<div class="col-md-4">
+					<div class="electionSub">
+						<a href="/elections-informations" class="electionBtn electionBtn--sm">
+							<img src="../static/images/02ico.svg" />
+							<p>Obtenir de<br> l'information</p>
+						</a>
+						<ul class="list-unstyled electionSub__menu">
+							<li><a href="/elections-informations#section01" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Conseil municipal et élus</a></li>
+							<li><a href="/elections-informations#section02" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Calendrier électoral 2019</a></li>
+							<li><a href="/elections-informations#section03" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Foire aux questions</a></li>
+						</ul>						
+					</div>
+				</div>	
+				<div class="col-md-4">
+					<div class="electionSub">
+						<a href="/elections-candidature" class="electionBtn electionBtn--sm">
+							<img src="../static/images/03ico.svg" />
+							<p>Je pose ma<br> candidature</p>
+						</a>
+						<ul class="list-unstyled electionSub__menu">
+							<li><a href="/elections-candidature#accordion1" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Êtes-vous éligible</a></li>
+							<li><a href="/elections-candidature#accordion2" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Types de candidatures</a></li>
+							<li><a href="/elections-candidature#accordion3" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Déclaration de candidature</a></li>
+						</ul>
+					</div>
+				</div>								
+				<div class="col-md-4">
+					<a href="/elections-resultats" class="electionBtn electionBtn--sm active">
+						<img src="../static/images/01ico.svg" />
+						<p>Les<br> résultats</p>
+					</a>
+				</div>								
+			</div>				
+			
+			<div class="row spacer-bottom-md">
+				<div class="col-md-12 wysiwyg">
+					<p>À venir</p>
+				</div>
+			</div>
+			
+			
+			<div class="row hidden spacer-bottom-lg">
+				<div class="col-md-12">
+					<h3>Maire</h3>
+				</div>
+				<div class="col-sm-6 candidate">
+					<div class="candidate__content">
+						<p><strong>ÉLU</strong> Équipe Benoit Proulx</p>
+						<p class="candidate__name">Benoit <span>Proulx</span></p>
+						<p class="candidate__percentTitle">1580</p>
+						<div class="candidate__percent hidden">
+							<span data-value="0" style="width: 0"></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 candidate">
+					<div class="candidate__content">
+						<p>Équipe Alain Théorêt</p>
+						<p class="candidate__name">Alain <span>Théorêt</span></p>
+						<p class="candidate__percentTitle">839</p>
+						<div class="candidate__percent hidden">
+							<span data-value="0" style="width: 0"></span>
+						</div>
+					</div>
+				</div>						
+			</div>
+			
+			
+			<div class="row hidden spacer-bottom-lg">
+				<div class="col-md-6">
+					<h3>District de la Baie</h3>
+					<div class="row">
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p><strong>ÉLU</strong> Équipe Benoit Proulx</p>
+								<p class="candidate__name">Régent <span>Aubertin</span></p>
+								<p class="candidate__percentTitle">220</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p>Équipe Alain Théorêt</p>
+								<p class="candidate__name">Marie-Ève <span>Olaïzola</span></p>
+								<p class="candidate__percentTitle">179</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>
+				
+				<div class="col-md-6">
+					<h3>District des Sables</h3>
+					<div class="row">
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p><strong>ÉLUE</strong> Équipe Benoit Proulx</p>
+								<p class="candidate__name">Marie-Josée <span>Archetto</span></p>
+								<p class="candidate__percentTitle">266</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p>Équipe Alain Théorêt</p>
+								<p class="candidate__name">Jacques <span>Quintin</span></p>
+								<p class="candidate__percentTitle">91</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>				
+			</div>
+			
+			<div class="row hidden spacer-bottom-lg">
+				<div class="col-md-6">
+					<h3>District des Coteaux</h3>
+					<div class="row">
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p><strong>ÉLU</strong> Équipe Benoit Proulx</p>
+								<p class="candidate__name">Michel <span>Thorn</span></p>
+								<p class="candidate__percentTitle">312</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p>Équipe Alain Théorêt</p>
+								<p class="candidate__name">Benoit <span>Bourassa</span></p>
+								<p class="candidate__percentTitle">141</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>
+				
+				<div class="col-md-6">
+					<h3>District de la Vallée</h3>
+					<div class="row">
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p><strong>ÉLU</strong> Équipe Benoit Proulx</p>
+								<p class="candidate__name">Alexandre <span>Dussault</span></p>
+								<p class="candidate__percentTitle">228</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p>Équipe Alain Théorêt</p>
+								<p class="candidate__name">Benoit <span>Boucher</span></p>
+								<p class="candidate__percentTitle">82</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>				
+			</div>	
+			
+			<div class="row hidden spacer-bottom-lg">
+				<div class="col-md-12">
+					<h3>District du Berceau</h3>
+					<div class="row">
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p><strong>ÉLU</strong> Équipe Benoit Proulx</p>
+								<p class="candidate__name">Nicolas <span>Villeneuve</span></p>
+								<p class="candidate__percentTitle">271</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 candidate">
+							<div class="candidate__content">
+								<p>Équipe Alain Théorêt</p>
+								<p class="candidate__name">Pascale <span>Reny</span></p>
+								<p class="candidate__percentTitle">171</p>
+								<div class="candidate__percent hidden">
+									<span data-value="0" style="width: 0"></span>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>				
+			</div>										
+			
+		</div><!-- Elections Header -->
+
+
+
+{% endblock %}
+
+
+{% block extra_footer %}
+<script src="/static/js/jquery.appear.js"></script> 
+<script>
+	
+	// Animate % bar
+	var progressVotes = $('.candidate__percent span');
+
+	progressVotes.appear({ force_process: true });
+
+	progressVotes.on('appear', function() {
+		$(this).animate({width: $(this).data("value") + "%"}, 1200);
+	});	
+	
+	
+	// Submenu
+	$('.electionSub').hover(
+		function() {
+			$(this).find('a').addClass('active');
+			$(this).find('ul').addClass('is-active');
+		}, function() {
+			$(this).find('a').removeClass('active');
+			$(this).find('ul').removeClass('is-active');
+		}
+	);		
+	
+
+</script>
+{% endblock %}

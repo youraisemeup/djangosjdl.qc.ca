@@ -1,0 +1,14 @@
+{% extends "careers/base.html" %}
+{% load mezzanine_tags keyword_tags shortcodes_filters %}
+
+{% block main %}
+{{ block.super }}
+<h3>Postes disponibles</h3>
+{% if careers %}
+    {% for career in careers %}
+        <p><a href="{% url 'careers:detail' career.slug %}">{{ career.title }}</a></p>
+    {% endfor %}
+{% else %}
+    <p>Il n'y a pas d'emplois disponibles pour le moment.</p>
+{% endif %}
+{% endblock %}

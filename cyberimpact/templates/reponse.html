@@ -1,0 +1,14 @@
+{% extends "default.html" %}
+
+{% block title %}Inscription à l'infolettre{% endblock %}
+{% block meta_title %}Inscription à l'infolettre{% endblock %}
+
+{% block main %}
+    {% if reponse == 'succes' %}
+        <p>Votre demande d'inscription a été soumise. Veuillez vérifier votre boîte de courriel afin de confirmer votre abonnement.</p>
+    {% elif reponse == 'erreur' %}
+        <p>Une erreur est survenue, svp essayez de nouveau.</p>
+    {% else %}
+        <p>Votre abonnement est maintenant confirmé!</p>
+    {% endif %}
+{% endblock %}

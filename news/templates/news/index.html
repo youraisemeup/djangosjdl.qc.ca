@@ -1,0 +1,40 @@
+{% extends "news/base.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block meta_title %}Actualités - {{settings.SITE_TITLE}}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+actualites, nouvelles, saint joseph du lac
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+Découvrez nos dernières actualités
+{% endmetablock %}{% endblock %}
+
+{% block body_id %}listing{% endblock %}
+
+{% block title%}Actualités{% endblock %}
+
+{% block main %}
+{% if news %}
+    <div class="">
+    {% for newsitem in news %}
+        <div class="event row">
+            <div class="col-xs-12 col-sm-4">
+                {% if newsitem.ik_image %}
+                <a href="{% url 'news:detail' newsitem.slug %}"><img class="img-responsive" src="{{MEDIA_URL}}{% thumbnail newsitem.ik_image 385 289 %}" alt=""/></a>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <p class="date">Publié le {{ newsitem.publish_date|date:'l d F Y' }}</p>
+                <h3>{{ newsitem.title }}</h3>
+                {{newsitem.content|richtext_filters|truncatewords_html:30|safe}}
+                <a class="btn more" href="{% url 'news:detail' newsitem.slug %}">En savoir plus</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>Il n'y a pas de nouvelles pour le moment.</p>
+{% endif %}
+{% endblock %}

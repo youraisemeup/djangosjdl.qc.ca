@@ -1,0 +1,14 @@
+{% extends "default.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block customsidebar %}{% block customsidebarmobile %}
+<div class="sideblock">
+    <h4>Archives</h4>
+    {% regroup archives by publish_date|date:"Y-m" as news_by_month %}
+    <ul class="archives">
+    {% for archive in news_by_month %}
+        <li><a href="/nouvelles/{{archive.list.0.publish_date|date:'Y'}}/{{archive.list.0.publish_date|date:'m'}}">{{archive.list.0.publish_date|date:'F'}} {{archive.list.0.publish_date|date:'Y'}}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "events/base.html" %}
+{% load mezzanine_tags %}
+{% block meta_title %}Événements{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+evenements, saint joseph du lac
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+Découvrez ce qui ce passe à Saint-Joseph-du-Lac!
+{% endmetablock %}{% endblock %}
+
+{% block title%}Événements{% endblock %}
+
+{% block body_id %}listing{% endblock %}
+
+{% block main %}
+{% if events %}
+    <div class="">
+    {% for event in events %}
+        <div class="event row">
+            <div class="col-xs-12 col-sm-4">
+                {% if event.event.event_ik_image %}
+                <a href="{% url 'events:detail' event.event.slug %}"><img class="img-responsive" src="{{MEDIA_URL}}{% thumbnail event.event.ik_image 385 289 %}" alt=""/></a>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                {% if event.dt_fin %}
+                    <p class="date">Du {{ event.dt_debut|date:'d F' }} au {{ event.dt_fin|date:'d F' }}</p>
+                {% else %}
+                    <p class="date">{{ event.dt_debut|date:'d F' }}</p>
+                {% endif %}
+                <h3>{{event.event.title}}</h3>
+                {{event.event.content|richtext_filters|truncatewords_html:50|safe}}
+                <a class="btn more" href="{% url 'events:detail' event.event.slug %}">En savoir plus</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>Il n'y a pas d'événements pour le moment.</p>
+{% endif %}
+{% endblock %}

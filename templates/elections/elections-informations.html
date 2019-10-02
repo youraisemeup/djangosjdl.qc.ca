@@ -1,0 +1,386 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Élections Informations 2019" %}{% endblock %}
+{% block title %}{% trans "Élections Informations 2019" %}{% endblock %}
+
+{% block extra_css %}
+<!-- ICI, ON PEUT CALLER DES FICHIERS CSS SUPPLÉMENTAIRES, SI ON NE VEUT PAS MODIFIER DES FICHIERS EXISTANTS -->
+<!-- PAS DE JAVASCRIPT, CE QUI EST ICI VA ÊTRE COMPILÉ, SEUL LE CSS PEUT L'ÊTRE -->
+{% endblock %}
+
+
+{% block extra_head %}
+<!-- DU STOCK DE PLUS POUR LE HEAD. ON PEUT AJOUTER DES JS ICI -->
+{% endblock %}
+
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block content %}
+
+<!--
+    ENTIÈRETÉ DU BLOCK ENTRE LE HEADER ET LE FOOTER
+    POUR REFAIRE UN NOUVEAU DESIGN EN GARDANT DES ÉLÉMENTS DE BASE GÉNÉRÉS PAR LE CODE PYTHON
+    DUPLIQUER BASE.HTML, LUI DONNER UN AUTRE NOM, ET CHANGER LE "EXTENDS" AU TOP DE CE FICHIER.
+    TOUT CE QUI EST DANS DES BALISES BLOCK XXXX PEUT ÊTRE MODIFIÉ PAR HÉRITAGE
+-->
+
+		<!-- Elections Header -->
+		<div class="container spacer-bottom-lg">
+			<div class="row spacer-bottom-sm">
+				<div class="col-md-12">
+					<a href="/elections"><img src="../static/images/header_elections.jpg" alt="Élections" class="img-responsive img-full" /></a>
+				</div>
+			</div>
+			
+			<div class="row spacer-bottom-md">
+				<div class="col-md-4">
+					<div class="electionSub">
+						<a href="/elections-informations" class="electionBtn electionBtn--sm active">
+							<img src="../static/images/02ico.svg" />
+							<p>Obtenir de<br> l'information</p>
+						</a>
+						<ul class="list-unstyled electionSub__menu">
+							<li><a href="#section01" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Conseil municipal et élus</a></li>
+							<li><a href="#section02" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Calendrier électoral 2019</a></li>
+							<li><a href="#section03" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Foire aux questions</a></li>
+						</ul>						
+					</div>
+				</div>	
+				<div class="col-md-4">
+					<div class="electionSub">
+						<a href="/elections-candidature" class="electionBtn electionBtn--sm">
+							<img src="../static/images/03ico.svg" />
+							<p>Je pose ma<br> candidature</p>
+						</a>
+						<ul class="list-unstyled electionSub__menu">
+							<li><a href="/elections-candidature#accordion1" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Êtes-vous éligible</a></li>
+							<li><a href="/elections-candidature#accordion2" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Types de candidatures</a></li>
+							<li><a href="/elections-candidature#accordion3" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Déclaration de candidature</a></li>
+						</ul>
+					</div>
+				</div>								
+				<div class="col-md-4">
+					<a href="/elections-resultats" class="electionBtn electionBtn--sm">
+						<img src="../static/images/01ico.svg" />
+						<p>Les<br> résultats</p>
+					</a>
+				</div>									
+			</div>					
+			
+			<div class="row spacer-bottom-md">
+				<div class="col-md-10 col-md-offset-1 wysiwyg">
+					<p>Le 10 novembre 2019, les électeurs du district 5, du Berceau, seront appelés à élire un conseiller ou une conseillère. Cette personne fera partie d’un conseil formé de 6 conseiller(ère)s et d’un maire(esse). Elle représentera les intérêts des électeurs de son district.</p>
+					<p>Vous trouverez dans cette section toutes les informations utiles relative à cette prochaine élection et ainsi être en mesure de participer activement à la vie démocratique de votre milieu.</p>
+					<p>D’ailleurs, pourquoi ne pas poser votre candidature lors des prochaines élections pour occuper ce poste ou inviter quelqu'un à le faire?</p>
+					<p>Pensez-y!</p>
+				</div>
+			</div>
+			
+			<div id="section01" class="row">
+				<div class="col-md-12">
+					<h3>Conseil municipal et élus</h3>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					
+					<!-- Accordeon -->
+					<div data-accordion-group>
+						<div class="accordion" data-accordion>
+							<div data-control>Rôle du conseil municipal</div>
+							<div data-content>
+								<div>
+									<p>Les élus réunis en conseil représentent la population. Ils prennent les décisions sur les orientations et les priorités de la municipalité et en administrent les affaires.</p>
+									<p>Lorsqu'ils décident des orientations et des priorités d’action de la municipalité, leurs décisions prennent la forme de résolutions ou de règlements adoptés lors d’une assemblée tenue dans les règles. Ainsi, l’assemblée du conseil est le principal lieu d’exercice de la démocratie municipale. Individuellement et en dehors des assemblées du conseil, les élus n’ont pas le pouvoir de prendre des décisions au nom de la municipalité ni d’intervenir dans l’administration de cette dernière. </p>
+									<p>En cas de force majeure, seule la mairesse ou le maire dispose de ce pouvoir.</p>
+									<p>Le conseil assume ainsi les compétences dévolues par les lois qui le concernent et s’assure d’offrir des services répondant aux besoins de la collectivité. </p>
+									<p>Dans l’exercice de leurs responsabilités et pour exécuter les décisions prises par le conseil, les élus peuvent compter sur le fonctionnaire principal de la municipalité, le directeur général, ainsi que sur les autres fonctionnaires municipaux.</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion" data-accordion>
+							<div data-control>Composition du conseil</div>
+							<div data-content>
+								<div>
+									<p>Le conseil municipal comprend une mairesse ou un maire et six conseillères et conseillers. Leur mandat est de quatre ans, soit la période entre deux élections générales, à l’exception du mandat des membres du conseil élus lors d’une élection partielle. La personne élue le 10 novembre prochain occupera donc son poste jusqu’aux prochaines élections générales prévues en 2021.</p>
+									<p>Composée d’un peu plus de 6 660 habitants, la municipalité de Saint-Joseph-du-Lac est divisée en six districts électoraux, chacun étant représenté par une conseillère ou un conseiller. </p>
+								</div>
+							</div>
+						</div>	
+						<div class="accordion" data-accordion>
+							<div data-control>Mairesse ou maire</div>
+							<div data-content>
+								<div>
+									<p>La personne élue maire ou mairesse représente l’ensemble de la population de la municipalité. Elle préside les assemblées du conseil et travaille en collégialité avec ses membres. Elle possède aussi le droit de surveillance, d’investigation et de contrôle sur le fonctionnement des services municipaux.  C’est également la mairesse ou le maire qui achemine les mandats confiés par le conseil à l’appareil administratif municipal, supervise l’application des règlements et des résolutions et communique toute information jugée d’intérêt public. Elle doit spécialement veiller à ce que les revenus de la municipalité soient perçus et dépensés suivant la loi.</p>
+									<p>En tout temps, le maire ou la mairesse participe à la prise de décisions lors des assemblées du conseil, mais n’est pas obligée ou obligé de voter. Dans une situation d’urgence qui menace la vie ou la santé de la population ou l’intégrité des équipements municipaux, la mairesse ou le maire peut, de son propre chef, autoriser les dépenses et attribuer les contrats jugés nécessaires pour remédier à la situation.</p>
+									<p>De plus, le maire ou la mairesse participe à d’autres instances démocratiques, comme le conseil de la municipalité régionale de comté. Il ou elle peut être appelé à occuper le poste de préfet de sa municipalité régionale de comté.</p>
+								</div>
+							</div>
+						</div>												
+						<div class="accordion" data-accordion>
+							<div data-control>Conseillère ou conseiller</div>
+							<div data-content>
+								<div>
+									<p>En plus d’assister aux assemblées du conseil et d’y faire valoir les intérêts de leur communauté, les conseillères et conseillers peuvent éclairer le conseil sur des sujets particuliers. Ils peuvent en effet être nommés à des commissions ou à des comités, ou encore se voir attribuer des dossiers qu’ils devront approfondir afin de soutenir le conseil dans ses décisions.</p>
+									<p>Les conseillères et les conseillers doivent voter à chaque proposition débattue lors des assemblées du conseil, sauf s’ils sont en situation de conflit d’intérêts. Ils peuvent aussi être appelés à agir à titre de maire suppléant. Ainsi, en l’absence de la mairesse ou du maire ou pendant une vacance à ce poste, la conseillère ou le conseiller désigné par le conseil remplit les fonctions de maire.</p>
+								</div>
+							</div>
+						</div>							
+					</div><!-- Accordeon END -->	    					
+					
+				</div>
+			</div>
+			
+		</div><!-- Elections Main -->
+		
+		
+		<!-- White Container -->
+		<div id="section02" class="bg-white">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						
+						<h3>Calendrier électoral 2019</h3>
+						<div class="table-responsive spacer-bottom-lg">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Étapes</th>
+										<th>Dates importantes pour le scrutin du 5 novembre</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Avis public d’élection</td>
+										<td>9 septembre 2019</td>
+									</tr>
+									<tr>
+										<td>Période de dépôt des déclarations de candidature</td>
+										<td>Du 27 septembre au 11 octobre 2019</td>
+									</tr>
+									<tr>
+										<td>Dernier jour pour les propriétaires uniques et les occupants uniques pour transmettre à la municipalité un écrit signé demandant leur inscription sur la liste électorale avant son dépôt</td>
+										<td>6 octobre 2019</td>
+									</tr>
+									<tr>
+										<td>Dernier jour pour les copropriétaires et les cooccupants pour transmettre à la municipalité une procuration afin de désigner une personne à être inscrite sur la liste électorale avant son dépôt</td>
+										<td>6 octobre 2019</td>
+									</tr>
+									<tr>
+										<td>Dépôt de la liste électorale</td>
+										<td>11 octobre 2019</td>
+									</tr>									
+									<tr>
+										<td>Proclamation du candidat ou de la candidate élu(e) sans opposition</td>
+										<td>11 octobre 2019</td>
+									</tr>
+									<tr>
+										<td>Commission de révision</td>
+										<td>22 octobre 2019, de 10 h à 17 h 30</td>
+									</tr>
+									<tr>
+										<td>Commission de révision</td>
+										<td>23 octobre 2019, de 19 h à 22 h </td>
+									</tr>																											
+									<tr>
+										<td>Jour du vote par anticipation</td>
+										<td>3 novembre 2019, de 12 h à 20 h</td>
+									</tr>
+									<tr>
+										<td>Jour du scrutin</td>
+										<td>10 novembre 2019, de 10 h à 20 h</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+						<div class="alert alert-default spacer-bottom-md">
+							<p><strong>ATTENTION</strong></p>
+							<ul class="list-unstyled">
+								<li>Ce calendrier n’est pas exhaustif, il s’agit d’une sélection des moments clés de la période électorale 2019.</li>
+								<li>Si vous êtes candidat ou un membre du personnel électoral, veuillez communiquer avec le président d’élection de votre municipalité.</li>
+							</ul>
+						</div>
+						
+						
+						<div class="alert alert-default alert-noborder">
+							<p><strong>NOTES</strong></p>
+							<ol>
+								<li>Afin de connaître les jours fixés pour la révision de la liste électorale dans votre municipalité, veuillez vous adresser au président d’élection.</li>
+								<li>Dans le cas d’une manœuvre électorale frauduleuse, la contestation doit se faire dans les 30 jours de la perpétration de cette manœuvre lorsque la requête allègue qu’elle a été pratiquée après la proclamation.</li>
+								<li>Publications (lien vers d’autres sites Internet)</li>
+							</ol>
+						</div>						
+						
+					</div>
+				</div>
+			</div>
+		</div><!-- White Container END -->
+		
+		
+		
+		<!-- Container -->
+		<div id="section03" style="padding-top: 60px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Foire aux questions</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<!-- Accordeon -->
+						<div data-accordion-group class="spacer-top-sm">
+							<div class="accordion" data-accordion>
+								<div data-control>Quelles conditions dois-je remplir pour m’inscrire sur la liste électorale?</div>
+								<div data-content>
+									<div>
+										<p>Pour voter aux élections municipales, vous devez être un électeur et être inscrit sur la liste électorale de Saint-Joseph-du-Lac.</p>
+										<p>Pour avoir la qualité d’électeur, vous devez :</p>
+										<ul>
+											<li>avoir 18 ans le jour du scrutin, soit le 10 novembre 2019</li>
+											<li>le 9 septembre de l’année de l’élection partielle : 
+												<ul>
+													<li>être de citoyenneté canadienne;</li>
+													<li>ne pas être soumis au régime de la curatelle;</li>
+													<li>ne pas être déclaré coupable d’une infraction qui constitue une manœuvre électorale frauduleuse.</li>
+												</ul>
+											</li>
+										</ul>
+										<p>Et à cette même date (9 septembre), vous devez remplir une des deux conditions suivantes :</p>
+										<ul>
+											<li>être domicilié dans la municipalité sur le territoire du district 5, du Berceau et, depuis au moins six mois, au Québec;</li>
+											<li>être, depuis au moins 12 mois, le propriétaire d'un immeuble ou l'occupant d'un établissement d'entreprise situé sur le territoire de la municipalité.</li>
+										</ul>
+										<p>L'électeur non domicilié dans la municipalité mais propriétaire d’un immeuble ou occupant d’un établissement d’entreprise situé sur le territoire du district 5, du Berceau de la municipalité doit transmettre le <a href="/static/media/uploads/ELECTIONS%202017/formulaire_smr_9_2_demande_inscription.pdf" target="_blank">formulaire SMR-9.2</a> à la municipalité demandant d'ajouter son nom sur la liste électorale.</p>
+										<p>Les personnes copropriétaires d’un immeuble ou cooccupantes d’un établissement d’entreprise doivent désigner parmi elles, au moyen d’une procuration transmise à la municipalité, une seule personne qui peut être inscrite sur la liste électorale. Cette procuration doit être remplie par la voie du <a href="/static/media/uploads/ELECTIONS%202017/formulaire_smr_9_1_procuration.pdf" target="_blank">formulaire SMR-9.1</a>.</p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion" data-accordion>
+								<div data-control>Comment puis-je vérifier mon inscription sur la liste électorale?</div>
+								<div data-content>
+									<div>
+										<p>Au début de la période électorale, le président d'élection vous adressera un avis vous informant de votre inscription. Vous devez bien vérifier les données apparaissant sur cet avis. N'oubliez pas que pour voter, il faut être inscrit sur la liste électorale.</p>
+										<p>Pour vérifier votre inscription sur la liste électorale, vous pouvez également communiquer avec le président d'élection de Saint-Joseph-du-Lac, M. Stéphane Giguère, au 450 623-1072.</p>
+									</div>
+								</div>
+							</div>	
+							<div class="accordion" data-accordion>
+								<div data-control>Que dois-je faire si je ne suis pas inscrit sur la liste électorale?</div>
+								<div data-content>
+									<div>
+										<p>Si vous n’êtes pas inscrit sur la liste électorale, une demande d’inscription peut être faite à la commission de révision. Celle-ci siégera le mardi 22 octobre 2019, de 10 h à 17 h 30, ainsi que le mercredi 23 octobre 2019, de 19 h à 22 h.</p>
+										<p>Deux pièces d’identité sont requises : une comportant le nom et le prénom et la date de naissance et une autre indiquant le nom et le prénom et l’adresse du domicile de l’électeur dont l’inscription est demandée. L’adresse précédente de son domicile est également exigée.</p>
+									</div>
+								</div>
+							</div>												
+							<div class="accordion" data-accordion>
+								<div data-control>Ai-je le droit de faire radier mon nom de la liste électorale?</div>
+								<div data-content>
+									<div>
+										<p>Tout électeur inscrit sur la liste électorale peut demander sa radiation, ou celle d’un autre électeur, de cette liste électorale. Par exemple, l’occupant d’un logement peut, sous certaines conditions, demander la radiation d’un ancien locataire dont le nom est toujours sur la liste électorale. Pour ce faire, l’électeur doit se présenter devant la commission de révision. Celle-ci siégera le mardi 22 octobre 2019, de 10 h à 17 h 30, ainsi que le mercredi 23 octobre 2019, de 19 h à 22 h.</p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion" data-accordion>
+								<div data-control>Puis-je voter si je ne suis pas résident de Saint-Joseph-du-Lac, mais que j’y possède un immeuble ou une entreprise?</div>
+								<div data-content>
+									<div>
+										<p>Un électeur non domicilié se qualifiant à titre de propriétaire d’un immeuble ou d’occupant d’un établissement d’entreprise doit remplir le <a href="/static/media/uploads/ELECTIONS%202017/formulaire_smr_9_2_demande_inscription.pdf" target="_blank">formulaire SMR-9.2</a> demandant son inscription et le transmettre à la municipalité d’ici le 11 octobre 2019.</p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion" data-accordion>
+								<div data-control>Quand dois-je aller voter?</div>
+								<div data-content>
+									<div>
+										<p>Le 10 novembre prochain, les bureaux de vote seront ouverts de 10 h à 20 h.</p>
+										<p>Si vous prévoyez être absent ou incapable d’aller voter le jour du scrutin, vous pouvez le faire par anticipation, le 3 novembre 2019, de 12 h à 20 h.</p>
+									</div>
+								</div>
+							</div>	
+							<div class="accordion" data-accordion>
+								<div data-control>Où dois-je aller voter?</div>
+								<div data-content>
+									<div>
+										<p>Pour exercer leur droit de vote, les résidents du district du Berceau de Saint-Joseph-du-Lac doivent se présenter à la <strong>Salle municipale, située au 1110, chemin Principal</strong>.</p>
+									</div>
+								</div>
+							</div>	
+							<div class="accordion" data-accordion>
+								<div data-control>Où puis-je voir la carte des districts électoraux?</div>
+								<div data-content>
+									<div>
+										<p><img src="../static/images/districts.jpg" alt="Districts" style="width: 100%" /></p>
+									</div>
+								</div>
+							</div>								
+							<div class="accordion" data-accordion>
+								<div data-control>De quoi ai-je besoin pour aller voter?</div>
+								<div data-content>
+									<div>
+										<p>Pour voter le jour du vote par anticipation et le jour du scrutin, vous devez confirmer votre identité à visage découvert et en présentant une pièce d’identité avec photo, soit :</p>
+										<ul>
+											<li>votre carte d’assurance maladie délivrée par la Régie de l’assurance maladie du Québec;</li>
+											<li>votre permis de conduire ou votre permis probatoire délivrés sur support plastique par la Société de l’assurance automobile du Québec;</li>
+											<li>votre passeport canadien;</li>
+											<li>votre carte d’identité des Forces armées canadiennes;</li>
+											<li>votre certificat de statut d’Indien.</li>
+										</ul>
+										<p>Vous devez aussi apporter le carton « Avis d’inscription » à votre nom, que vous aurez reçu par la poste dans les semaines précédant l’élection.</p>
+									</div>
+								</div>
+							</div>			
+																																																																																																																																																																																																																																																																																																																																																																													
+						</div><!-- Accordeon END -->						
+					</div>
+				</div>
+			</div>
+		</div><!-- Container END -->
+		
+		
+
+{% endblock %}
+
+
+
+{% block extra_footer %}
+<script src="/static/js/jquery.accordion.js"></script> 
+<script>
+	
+	// Accordion
+	if ( $('.accordion').length > 0) {
+		$('.accordion').accordion({
+			"transitionSpeed": 500,
+		});		
+	}
+	
+	// Smooth Scroll
+	$('.btn-accordion').on('click', function() { 
+		var page = $(this).attr('href'); 
+		var speed = 750;
+		$('html, body').animate( { scrollTop: $(page).offset().top - 200 }, speed ); 
+		return false;
+	});		
+	
+	
+	// Submenu
+	$('.electionSub').hover(
+		function() {
+			$(this).find('a').addClass('active');
+			$(this).find('ul').addClass('is-active');
+		}, function() {
+			$(this).find('a').removeClass('active');
+			$(this).find('ul').removeClass('is-active');
+		}
+	);
+	
+
+</script>
+{% endblock %}

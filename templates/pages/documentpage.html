@@ -1,0 +1,27 @@
+{% extends "default.html" %}
+{% load pages_tags mezzanine_tags future staticfiles shortcodes_filters %}
+
+{% block pagedocuments %}{% block pagedocumentsmobile %}
+
+    {% with page.documentpage.documents.all as documents %}
+    {% if documents %}
+        <div class="sidedocuments sideblock">
+        <h4>Documentation</h4>
+        <ul>
+            {% for document in documents %}
+            <li>
+                <a class="pdf" title="{{ document.title }}" href="{{ document.file.url }}" target="_blank">
+                    {{ document.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        </div>
+    {% endif %}
+    {% endwith %}
+
+{% endblock %}{% endblock %}
+
+{% block main %}
+    {{ page.documentpage.content|shortcodes|safe }}
+{% endblock %}

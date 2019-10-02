@@ -1,0 +1,27 @@
+{% load mezzanine_tags %}
+<div class="cycle-slideshow"
+    data-slides=" > .slide"
+    data-cycle-fx="fade"
+    date-cycle-speed="500"
+    data-cycle-prev="#prev"
+    data-cycle-next="#next"
+    data-cycle-pager=".slider-pager"
+    data-cycle-pager-template="<span></span>">
+    {% for image in sliderimages %}
+    <div class="slide">
+        <div class="imgcontainer">
+            <img src="{{MEDIA_URL}}{% thumbnail image.file 800 600 padding=True %}" alt="" class="img-responsive"/>
+        </div>
+        <div class="caption">
+            {% comment %}
+            {% if image.title %}<p class="title">{{ image.title }}</p>{% endif %}
+            {% if image.description %}<p class="desc">{{ image.description }}</p>{% endif %}
+            {% if image.credits %}<p class="credits">{{ image.credits }}</p>{% endif %}
+            {% endcomment %}
+        </div>
+    </div>
+    {% endfor %}
+    <a id="prev" href="#"></a>
+    <a id="next" href="#"></a>
+    <div class="slider-pager"></div>
+</div>

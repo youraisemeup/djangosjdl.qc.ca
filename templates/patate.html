@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Patate" %}{% endblock %}
+{% block title %}{% trans "Patate" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block main %}
+{% blocktrans %}
+<p>
+    Page de patates
+</p>
+
+{% endblocktrans %}
+{% endblock %}

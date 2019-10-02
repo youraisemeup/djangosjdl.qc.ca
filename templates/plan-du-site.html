@@ -1,0 +1,21 @@
+{% extends "default.html" %}
+{% load i18n pages_tags mezzanine_tags shortcodes_filters %}
+
+{% block meta_title %}Plan du site{% endblock %}
+{% block title %}Plan du site{% endblock %}
+{% block meta_description %}Consulter notre plan du site pour trouver l'information que vous cherchez!{% endblock %}
+
+{% block body_id %}sitemap{% endblock %}
+
+{% block main %}
+{% spaceless %}
+Consultez notre plan du site pour trouver l'information que vous cherchez!
+
+{% page_menu "pages/menus/tree.html" menupages  %}
+<ul>
+    <li class="child"><a href="/nouvelles">Nouvelles</a></li>
+    <li class="child"><a href="/evenements">Événements</a></li>
+</ul>
+
+{% endspaceless %}
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "pages/documentpage.html" %}
+
+{% load mezzanine_tags common_tags widget_tweaks shortcodes_filters %}
+
+{% block main %}
+    {{ block.super }}
+
+    {% errors_for form %}
+    <form action="imprimer/" method="post">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group {% if form.firstname.errors %}{{ 'has-error' }}{% endif %}">
+                        <label class="sr-only" for="">{{form.firstname.label}}</label>
+                        {{ form.firstname.errors }}
+                        {% if form.firstname.field.required %}
+                            {# form.firstname|attr:"placeholder:*"|add_class:"form-control"#}
+                            {% render_field form.firstname class+="form-control" placeholder+="*" required="" %}
+                        {% else %}
+                            {% render_field form.firstname class+="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group {% if form.lastname.errors %}{{ 'has-error' }}{% endif %}">
+                        <label class="sr-only" for="">{{form.lastname.label}}</label>
+                        {{ form.lastname.errors }}
+                        {% if form.lastname.field.required %}
+                            {# form.lastname|attr:"placeholder:*"|add_class:"form-control"#}
+                            {% render_field form.lastname class+="form-control" placeholder+="*" required="" %}
+                        {% else %}
+                            {% render_field form.lastname class+="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group {% if form.phone.errors %}{{ 'has-error' }}{% endif %}">
+                        <label class="sr-only" for="">{{form.phone.label}}</label>
+                        {{ form.phone.errors }}
+                        {% if form.phone.field.required %}
+                            {# form.phone|attr:"placeholder:*"|add_class:"form-control"#}
+                            {% render_field form.phone class+="form-control" placeholder+="*" required="" %}
+                        {% else %}
+                            {% render_field form.phone class+="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group {% if form.email.errors %}{{ 'has-error' }}{% endif %}">
+                        <label class="sr-only" for="">{{form.email.label}}</label>
+                        {{ form.email.errors }}
+                        {% if form.email.field.required %}
+                            {# form.email|attr:"placeholder:*"|add_class:"form-control"#}
+                            {% render_field form.email class+="form-control" placeholder+="*" required="" %}
+                        {% else %}
+                            {% render_field form.email class+="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                </tr>
+                <tr>
+                    <td>Livre du 150<sup>e</sup> <strong>sans coffret</strong></td>
+                    <td>{{form.iCountWithout}}</td>
+                    <td><span id="priceWithout"></span>$</td>
+                </tr>
+                <tr>
+                    <td>Livre du 150<sup>e</sup> <strong>avec coffret</strong></td>
+                    <td>{{form.iCountWith}}</td>
+                    <td><span id="priceWith"></span>$</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Frais de poste ({{basePriceShipping}}$/exemplaire)</td>
+                    <td><span id="priceShipping">{{basePriceShipping}}</span>$</td>
+                </tr>
+                <tr>
+                    <td align=right colspan="2">Total:</td>
+                    <td><span id="total"></span>$</td>
+                </tr>
+            </table>
+        <div class="row">
+            <div class="form-actions">
+                <input class="btn more" type="submit" value="Imprimer">
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block footer_scripts %}
+    {{ block.super }}
+    <script>
+        var baseShipping = {{basePriceShipping}};
+        var baseWithout = {{basePriceWithout}};
+        var baseWith = {{basePriceWith}};
+        $(function(){
+            setPrices();
+
+            $("#id_iCountWithout").change(setPrices);
+            $("#id_iCountWith").change(setPrices);
+        });
+
+        function setPrices(){
+            var withoutVal = (baseWithout * $("#id_iCountWithout").val()).toFixed(2);
+            var withVal = (baseWith * $("#id_iCountWith").val()).toFixed(2);
+            var shipping = (baseShipping * (parseInt($("#id_iCountWithout").val()) + parseInt($("#id_iCountWith").val()))).toFixed(2);
+            $("#priceWithout").html(withoutVal);
+            $("#priceWith").html(withVal);
+            $("#priceShipping").html(shipping);
+            $("#total").html((parseInt(shipping) + parseInt(withoutVal) + parseInt(withVal)).toFixed(2));
+        }
+    </script>
+{% endblock %}

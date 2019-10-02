@@ -1,0 +1,65 @@
+
+/* General
+-------------------------------------------------------------- */
+html, body {
+	/*height: 100%;*/
+}
+
+body{
+    background:@bgColor;
+    font-family: "proxima-nova", sans-serif;
+    overflow-x:hidden;
+}
+
+body:after {
+  content: url(/static/css/img/close.png) url(/static/css/img/loading.gif) url(/static/css/img/prev.png) url(/static/css/img/next.png);
+  display: none;
+}
+
+.shadow{
+    box-shadow:0px 2px 5px 0px rgba(0, 0, 0, 0.14);
+}
+
+.btnimage{display:block;background-position:top left;&:hover{background-position:bottom left;}}
+
+.sidebar>div, .maincontent>div{background:#fff;}
+
+p+ul{margin-top:-5px;}
+.table{
+    font-size:0.85em;
+    & > tbody > tr >td{vertical-align:middle;border-left:1px solid #ddd;&:first-child{border-left:0;}}
+    border-bottom:1px solid #ddd;
+}
+
+a.pdf{
+    position:relative;
+    padding-left:25px;
+    display:block;
+    &:before{
+        content:'';
+        position:absolute;
+        left:0;
+        background:url(img/icon-pdf.png);
+        background-size:18px 21px;
+        width:18px;
+        height:21px;
+    }
+}
+
+@media (max-width:@screen-xs-max){
+    .shadow{
+        margin-bottom:@grid-gutter-width;
+    }
+}
+
+/* BOOTSTRAP OVERRIDES OR ADDS */
+@grid-gutter-width: 15px;
+
+/* Add tiny column col-tn-* */
+@screen-tn-max:480px;
+@media (max-width: @screen-tn-max) {
+  .make-grid(tn);
+}
+@media(min-width:@screen-lg-min){
+    .container{width:1170px;}
+}

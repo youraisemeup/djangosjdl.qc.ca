@@ -1,0 +1,247 @@
+/* Candidate 
+-------------------------------------------------------------- */
+
+.candidate {
+	
+	.candidate__photo {
+		background-size: cover;
+		background-position: center;
+		height: 209px;
+	}	
+	
+	
+	&__content {
+		background: @mainMenuLinkColor;
+		padding: 30px 35px;
+		
+		.candidate__name {
+			font-size: 18px;
+			line-height: 1;
+			margin-bottom: 20px;
+			> span {
+				display: block;
+				font-size: 24px;
+				font-weight: 700;
+				text-transform: uppercase;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+		}
+		
+		.candidate__percentTitle {
+			font-size: 60px;
+			line-height: 1;
+			color: @mainColor;
+			font-weight: 700;
+		}
+		
+		.candidate__percent {
+			background: @bgColor;
+			height: 17px;
+			> span {
+				display: block;
+				background: @mainColor;
+				height: 17px;
+			}
+		}
+		
+	}
+	
+}
+
+
+/* Election Btns
+-------------------------------------------------------------- */
+
+.electionBtn {
+	display: block;
+	background: @mainMenuLinkColor;
+	border-bottom: 4px solid @mainColor;
+	text-align: center;
+	padding: 45px 15px;
+	margin-bottom: 15px;
+	transition: all 0.2s linear;
+	
+	@media (min-width: @screen-sm-min) {
+		margin-bottom: 0;
+	}
+	
+	&:hover,
+	&:focus {
+		background: @bgColor;
+		text-decoration: none;
+	}
+	
+	> img {
+		max-width: 60px;
+		margin-bottom: 15px;
+	}
+	
+	>  p {
+		color: @mainMenuLinkBgColor;
+		font-size: 30px;
+		font-weight: 500;
+		line-height: 1;
+	}
+	
+}
+
+
+.btn-square {
+	background: @mainMenuLinkColor;
+	border-radius: 0;
+	color: @mainMenuLinkBgColor;
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: uppercase;
+	padding: 10px;
+	margin-bottom: 5px;
+	transition: all 0.2s linear;
+	
+	@media (min-width: @screen-lg-min) {
+		font-size: 20px;
+		margin-bottom: 0;
+	}
+	
+	&.active,
+	&:hover,
+	&:focus {
+		background: @mainColor;
+		box-shadow: none;
+		color: @mainMenuLinkColor;
+	}
+	
+}
+
+
+/* Election Table
+-------------------------------------------------------------- */
+
+.table-responsive {
+	border: none;
+}
+
+.table {
+	&-striped {
+		font-size: 16px;
+		border-bottom: none;
+		
+		> thead {
+			> tr {
+				> th {
+					border-bottom: 1px solid @electBorderCol;
+					font-size: 24px;
+					color: @mainColor;
+					padding: 0 0 10px 0;
+					font-weight: 500;
+					width: 50%;
+				}
+			}
+		}
+		
+		&-sm {
+			> thead {
+				> tr {
+					> th {
+						font-size: 18px;
+					}
+				}
+			}			
+		}
+		
+		
+		> tbody {
+			> tr {
+				
+				&:nth-child(odd){
+					> td {
+						background-color: @mainMenuLinkColor;
+					}
+				}
+				
+				&:nth-child(even){
+					> td {
+						background-color: @bgColor;
+					}
+				}
+				
+				> td {
+					border: none;
+					padding: 16px;
+					vertical-align: top;
+				}
+			}
+		}		
+		
+		
+	}
+}
+
+
+/* Election Alert
+-------------------------------------------------------------- */
+
+.alert {
+	&-default {
+		border-radius: 0;
+		border: 2px solid @mainColor;
+		padding: 25px 30px;
+		
+		> p {
+			margin-bottom: 10px;
+		}
+		
+		> ol {
+			padding-left: 15px;
+		}
+	}
+	&-noborder {
+		border: none;
+	}
+}
+
+
+/* Utils
+-------------------------------------------------------------- */
+
+.wysiwyg {
+	font-size: 18px;
+	
+	p {
+		margin-bottom: 25px;
+	}
+	
+}
+
+.bg-white {
+	background-color: @mainMenuLinkColor;
+	padding: 90px 0;
+}
+
+.spacer-bottom-sm {
+	margin-bottom: 15px;
+}
+
+.spacer-bottom-md {
+	margin-bottom: 30px;
+}
+
+.spacer-bottom-lg {
+	margin-bottom: 80px;
+}
+
+.img-full {
+	width: 100%
+}
+
+.row-no-padding {
+	margin-left: 0;
+	margin-right: 0;
+	
+	[class*='col-']:not(:first-child), 
+	[class*='col-']:not(:last-child) {
+    padding-left: 0!important;
+    padding-right: 0!important;
+	}
+}

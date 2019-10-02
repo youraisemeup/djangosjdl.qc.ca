@@ -1,0 +1,61 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags common_tags widget_tweaks shortcodes_filters %}
+
+{% block main %}
+{{ block.super }}
+{% if request.GET.sent %}
+    {% editable page.form.response %}
+    {{ page.form.response|richtext_filters|shortcodes|safe }}
+    {% endeditable %}
+{% else %}
+    {% with page.form as page_form %}
+    {% editable page_form.content %}
+    {{ page_form.content|richtext_filters|shortcodes|safe }}
+    {% endeditable %}
+    {% endwith %}
+
+    {% errors_for form %}
+
+    <form class="mezzanine-form" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+        {% csrf_token %}
+        <div class="row">
+            {# fields_for form #}
+            {% for field in form %}
+
+                <div class='{% if field.field.widget|fieldtype == "Textarea" %}
+                    {{ "col-xs-12" }}
+                {% else %}
+                    {{ "col-xs-12 col-sm-6" }}
+                {% endif %}'>
+
+                    <div class="form-group {% if field.errors %}{{ 'has-error' }}{% endif %} {% if field.field.widget|fieldtype == 'CheckboxSelectMultiple' or field.field.widget|fieldtype == 'RadioSelect' or field.field.widget|fieldtype == 'CheckboxInput'%}checkboxes{% endif %}">
+                        <label class="{% if field.field.widget|fieldtype != 'CheckboxInput' and field.field.widget|fieldtype != 'CheckboxSelectMultiple' and field.field.widget|fieldtype != 'RadioSelect' %}sr-only{% endif %}" for="">{{field.label}}</label>
+                        {{ field.errors }}
+                        {% if field.field.required %}
+                            {# field|attr:"placeholder:*"|add_class:"form-control"#}
+                            {% render_field field class+="form-control" placeholder+="*" %}
+                        {% else %}
+                            {% render_field field class+="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="form-actions">
+                <input class="btn more" type="submit" value="{{ page.form.button_text }}">
+            </div>
+        </div>
+    </form>
+{% endif %}
+
+{% endblock %}
+
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+$(function() {$('.mezzanine-form :input:visible:enabled:first').focus();});
+</script>
+{% endblock %}

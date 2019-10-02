@@ -1,0 +1,42 @@
+{% extends "default.html" %}
+{% load mezzanine_tags shortcodes_filters keyword_tags %}
+
+{% block meta_title %}{{fiche.meta_title}}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for fiche as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ fiche.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title%}{{ fiche.title }}{% endblock %}
+
+{% block body_id %}fiche{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            {% if fiche.ik_image %}
+            <img class="img-responsive" src="{{MEDIA_URL}}{% thumbnail fiche.ik_image 768 512 %}" alt=""/>
+            {% endif %}
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            {{ fiche.excerpt|richtext_filters|shortcodes|safe }}
+            <div class="address">
+                {% if fiche.address %}{{fiche.address}}<br/>{% endif %}
+                {% if fiche.city %}{{fiche.city}}<br/>{% endif %}
+                {% if fiche.zipcode %}{{fiche.zipcode}}<br/>{% endif %}
+                {% if fiche.telephone %}{{fiche.telephone}}<br/>{% endif %}
+                {% if fiche.fax %}{{fiche.fax}}<br/>{% endif %}
+                {% if fiche.website %}<a href="{{fiche.website}}" target="" />{{fiche.website}}</a><br/>{% endif %}
+                {% if fiche.contactname %}{{link.contactname}}<br/>{% endif %}
+                {% if fiche.email %}<a href="mailto:{{ fiche.email }}">{{ fiche.email }}</a><br/>{% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

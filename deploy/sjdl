@@ -1,0 +1,28 @@
+
+    server {
+
+        # Running port
+        listen 8005;
+        server_name .sjdl.dev;
+        charset    utf-8;
+
+    	# Django media
+    	location /media  {
+                alias /home/programmeurs/ws/projects/sjdl/static/media;      # your Django project's media files
+        }
+
+   	location /static {
+        	alias /home/programmeurs/ws/projects/sjdl/static/;     # your Django project's static files
+    	}
+
+    	# Finally, send all non-media requests to the Django server.
+    	location / {
+        	uwsgi_pass unix:///home/programmeurs/ws/projects/sjdl/sjdl_uwsgi.sock;
+		include uwsgi_params;
+        	#uwsgi_pass 127.0.0.1:9991;
+    	}
+    }
+
+
+
+

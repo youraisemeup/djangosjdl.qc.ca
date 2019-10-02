@@ -1,0 +1,92 @@
+/* Change service color according to class service */
+/* Define color here */
+.serviceColor(@color){
+    @serviceColor: @color;
+    @file : replace('@{color}',"#","");
+    /*@file : '007580';*/
+    @pdfFile : 'img/icon-pdf-@{file}.png';
+    @btnEmailFile : 'img/icon-email-btn-@{file}.png'
+}
+/* Change defaults here */
+.themeProperties(){
+    .sidebar .shadow{
+        .sidemenu{
+            ul>li{
+                &:before{color:@serviceColor;}
+                /*&:first-child:before{color:#fff;}*/
+                &.section{background:@serviceColor;}
+                &.active>a{color:@serviceColor;}
+                a:hover,a:focus{color:@serviceColor;}
+                ul li{
+                    &:before{background-color:@serviceColor;}
+                    a:before{border-color:@serviceColor;}
+                }
+            }
+        }
+        .sideblock h4{color:@serviceColor;}
+    }
+    .maincontent .shadow{
+        h1,h4,h5,h6{color:@serviceColor;}
+        h3{border-color:@serviceColor;}
+        a:not(.btn){color:@serviceColor;}
+        ul li:before{background:@serviceColor;}
+    }
+    a.pdf:before{
+        background:url(@pdfFile);
+        background-size:18px 21px;
+    }
+    .btn.more{
+        background:@serviceColor;
+        &:hover,&:focus{
+            color:@serviceColor;
+            border-color:@serviceColor;
+            background:#fff;
+        }
+    }
+    .btn.email:hover:before,
+    .btn.email:focus:before{
+        background-image:url(@btnEmailFile);
+    }
+
+    @media (max-width:@screen-xs-max){
+        .sidebar .shadow .sidemenu{
+            ul>li.section{
+                background:#fff;
+                a{color:@serviceColor;}
+                .menutoggle .icon-bar{background:@serviceColor;}
+            }
+        }
+        .sidebar .shadow.opened{border-color:@serviceColor;}
+    }
+}
+
+.sectionclass{
+    &.conseilmunicipal{
+        .serviceColor(@conseilmunicipalColor);
+        .themeProperties();
+    }
+    &.environnement{
+        .serviceColor(@environnementColor);
+        .themeProperties();
+    }
+    &.travauxpublics{
+        .serviceColor(@travauxpublicsColor);
+        .themeProperties();
+    }
+    &.urbanisme{
+        .serviceColor(@urbanismeColor);
+        .themeProperties();
+    }
+    &.loisirs{
+        .serviceColor(@loisirsColor);
+        .themeProperties();
+    }
+    &.securiteincendie{
+        .serviceColor(@securiteincendieColor);
+        .themeProperties();
+    }
+    &.divers{
+        .serviceColor(@diversColor);
+        .themeProperties();
+    }
+}

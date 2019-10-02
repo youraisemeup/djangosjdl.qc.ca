@@ -1,0 +1,63 @@
+{% extends "default.html" %}
+{% load mezzanine_tags keyword_tags shortcodes_filters %}
+
+{% block meta_title %}{{ pageinfos.metatitle }} - {{settings.SITE_TITLE}}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+seances proces-verbaux, conseil municipal, saint joseph du lac
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ pageinfos.metadesc }}
+{% endmetablock %}{% endblock %}
+{% block title%}{{ pageinfos.h1title }}{% endblock %}
+
+{% block body_id %}reglementsMunicipaux{% endblock %}
+
+{% block main %}
+
+<p>Liste non exhaustive. Contactez le Service de l'urbanisme pour obtenir plus de renseignements sur la réglementation en vigueur.</p>
+
+{% if categories %}
+    {% for category in categories %}
+        {% ifchanged category.title.0 %}
+            <div class="firstletter"><span>{{category.title.0}}</span></div>
+        {% endifchanged %}
+        <div class="collapsableitem">
+            <h3 id="{{ category.title|slugify }}">{{ category.title }}</h3>
+            <div class="collapse">
+                {{ category.content|richtext_filters|shortcodes|safe }}
+                {% with category.documents.all as documents %}
+                    {% if documents %}
+                        <ul class="nobullets">
+                            {% for document in documents %}
+                            <li>
+                                <a class="pdf" title="{{ document.doctitle }}" href="{{ document.file.url }}" target="_blank">
+                                    {{ document.doctitle }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Il n'y a pas de documents pour le moment.</p>
+{% endif %}
+{% endblock %}
+
+{% block footer_scripts %}
+    {{block.super}}
+    <script type="text/javascript">
+        $(window).load(function(){
+            if(location.hash != ''){
+                $("h3" + location.hash).parent().addClass("opened");
+                $("h3" + location.hash).next(".collapse").toggle();
+                var scrollvalue = $(window).scrollTop();
+                $(window).scrollTop(scrollvalue - $("header").height());
+            }
+        });
+    </script>
+{% endblock %}

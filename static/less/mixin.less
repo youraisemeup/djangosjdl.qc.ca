@@ -1,0 +1,82 @@
+
+/* Mixin
+-------------------------------------------------------------- */
+/*Animation*/
+.transition(@property: all; @time: 250ms) {
+	transition: @property @time ease; 
+}
+
+/* Placeholder color */
+.placeholder(@color){
+    &::-webkit-input-placeholder{color:@color;}
+    &:-moz-placeholder {color:@color;}
+    &::-moz-placeholder{color:@color;}
+    &:-ms-input-placeholder{color:@color;}
+}
+
+/*Slider
+* Controls*/
+.controls(@size: 45px; @thickness: 1px; @position: 15px; ) {
+	#prev, #next {
+		width: @size; height: @size;
+		position: absolute; top: 50%;
+		z-index: 900;
+		outline:none;
+	}
+	#prev {
+		border-left: @thickness solid @sliderControlsColor;
+		border-bottom: @thickness solid @sliderControlsColor;
+		left: @position;
+		transform: translateY(-50%) rotate(45deg);
+	}
+	#next {
+		border-right: @thickness solid @sliderControlsColor;
+		border-bottom: @thickness solid @sliderControlsColor;
+		right: @position;
+		transform: translateY(-50%) rotate(-45deg);
+	}
+}
+/*Controls fade in-out*/
+.controls-animation(@property: all; @time: 300ms;) {
+	#prev, #next { 
+		opacity: 0;
+		transition: @property @time ease;;
+	}
+
+	.cycle-slideshow:hover { 
+		#prev, #next { 
+			opacity: 1;
+		}
+	}
+}
+
+/*Pager*/
+.slider-pager(@pagerColor: @sliderPagerColor; @pagerActiveColor: @sliderPagerActiveColor; @size: 10px; @radius: 5px; @spacing: 0 4px;) {
+	#slider-pager { 
+		.text-center;
+		line-height: 40px;
+
+		span {
+			background-color: @pagerColor;
+			width: @size; height: @size;
+			margin: @spacing;
+			border-radius: @radius;
+			display: inline-block;
+
+			&.cycle-pager-active { background-color: @pagerActiveColor; }
+		}
+	}
+}
+
+/* Buttons */
+.button(@radius:3px){
+    background:@mainColor;
+    color:#fff;
+    border-radius:@radius;
+    transition:all 0.5s ease;
+    &:hover,&:focus{
+        background:#fff;
+        color:@mainColor;
+        border-color:@mainColor;
+    }
+}

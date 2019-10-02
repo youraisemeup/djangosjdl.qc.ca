@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load pages_tags mezzanine_tags i18n future staticfiles coordonnees_tags shortcodes_filters common_tags documentation_tags %}
+
+{% block meta_title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+
+<div class="col-xs-12 col-sm-4 col-md-3 sidebar">
+    <div class="shadow">
+        {% PageHasChildren %}
+        {# if fourth level #}
+        {% if page.parent.parent.parent %}
+            <div class="sidemenu sideblock">
+                <ul>
+                    <li class="section">
+                        <div class="visible-xs menutoggle">
+                            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </div>
+                        <a href="{{page.parent.get_absolute_url}}" class="section"><span class="visible-xs">Menu </span>{{page.parent.title}}</a></li>
+                    {% page_menu "pages/menus/side.html" page.parent.parent %}
+                </ul>
+            </div>
+        {# if third level #}
+        {% elif page.parent.parent %}
+            <div class="sidemenu sideblock">
+                <ul>
+                    <li class="section">
+                        <div class="visible-xs menutoggle">
+                            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </div>
+                        <a href="{{page.parent.get_absolute_url}}" class="section"><span class="visible-xs">Menu </span>{{page.parent.title}}</a></li>
+                    {% page_menu "pages/menus/side.html" page.parent %}
+                </ul>
+            </div>
+        {# if second level #}
+        {% elif page.parent and page_has_children %}
+            <div class="sidemenu sideblock">
+                <ul>
+                    <li class="section">
+                        <div class="visible-xs menutoggle">
+                            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </div>
+                        <a href="{{page.get_absolute_url}}" class="section"><span class="visible-xs">Menu </span>{{page.title}}</a></li>
+                    {% page_menu "pages/menus/side.html" page %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if page.slug %}
+        {% get_loisirs_doc page.slug doc %}
+        {% if doc.cahierloisirs %}
+        <div class="sideblock hidden-xs">
+            <h4>Cahier des loisirs</h4>
+            {% if doc.cahierloisirs.imageloisirs %}
+                <a href="{{doc.cahierloisirs.docloisirs.url}}" target="_blank"><img src="{{MEDIA_URL}}{% thumbnail doc.cahierloisirs.imageloisirs 125 162 %}" alt="" class=""/></a>
+            {% endif %}
+            <p style="margin-top:10px;"><a href="{{doc.cahierloisirs.docloisirs.url}}" target="_blank">Télécharger le {{doc.cahierloisirs.titleloisirs}}</a></p>
+            <a href="https://www.sport-plus-online.com/PrmsMVC/Home/Loading/208/275" class="btn more" target="_blank">Inscrivez-vous!</a>
+        </div>
+        {% endif %}
+        {% endif %}
+
+        <div class="hidden-xs">
+        {% block customsidebar %}
+        {% endblock %}
+        </div>
+
+        <div class="hidden-xs">
+            {% block pagedocuments %}{% endblock %}
+        </div>
+
+        {% get_coordonnees_data page.id data %}
+        {% if data.coordonnees %}
+        <div class="coordonnees sideblock hidden-xs">
+            <h4>Coordonnées</h4>
+            {% for d in data.coordonnees %}
+                {% if d.contact_name or d.contact_title %}
+                    <div class="contact">
+                        {% if d.ik_image %}
+                        {% if d.ik_image %}<img src="{{MEDIA_URL}}{% thumbnail d.ik_image 75 100 %}" alt="" style="width:75px;border: 1px solid #dfdfdf;"/>{% endif %}
+                        {% endif %}
+                        {% if d.contact_name %}<p class="name">{{d.contact_name}}</p>{% endif %}
+                        {% if d.contact_title %}<p class="title">{{d.contact_title}}</p>{% endif %}
+                    </div>
+                {% endif %}
+                {% if d.telephone or d.fax or d.email %}
+                    <div class="numbers">
+                        {% if d.telephone %}<p class="phone" >{{d.telephone}}</p>{% endif %}
+                        {% if d.fax %}<p class="fax" >{{d.fax}}</p>{% endif %}
+                        {% if d.email %}<p class="email"><a href="mailto:{{d.email}}">Envoyer un courriel</a></p>{% endif %}
+                    </div>
+                {% endif %}
+
+                {% if d.address %}
+                    <div class="address">{{d.address|richtext_filters|safe}}</div>
+                {% endif %}
+            {% endfor %}
+            {% if data.useGeneralAddress %}
+                <p class="address"><strong>Hôtel de Ville</strong><br>1110, chemin Principal<br>Saint-Joseph-du-Lac, Québec<br>J0N 1M0</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    </div>
+    <div class="hidden-xs">{% block cutecalendar %}{% endblock %}</div>
+</div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 maincontent">
+    <div class="shadow">
+    <h1>{% block title %}{{page.title}}{% endblock %}</h1>
+    {% block main %}
+        <p>Page quelconque</p>
+    {% endblock %}
+    </div>
+</div>
+
+<div class="col-xs-12 visible-xs sidebar">
+    <div class="shadow">
+        {% if page.slug %}
+        {% get_loisirs_doc page.slug doc %}
+        {% if doc.cahierloisirs %}
+        <div class="sideblock">
+            <h4>Cahier des loisirs</h4>
+            {% if doc.cahierloisirs.imageloisirs %}
+                <a href="{{doc.cahierloisirs.docloisirs.url}}" target="_blank"><img src="{{MEDIA_URL}}{% thumbnail doc.cahierloisirs.imageloisirs 125 162 %}" alt="" class=""/></a>
+            {% endif %}
+            <p style="margin-top:10px;"><a href="{{doc.cahierloisirs.docloisirs.url}}" target="_blank">Télécharger le {{doc.cahierloisirs.titleloisirs}}</a></p>
+            <a href="https://www.sport-plus-online.com/Prmsinsc/Pages/Accueil.aspx?VirId=208&ArrId=275" class="btn more" target="_blank">Inscrivez-vous!</a>
+        </div>
+        {% endif %}
+        {% endif %}
+
+        {% block customsidebarmobile %}
+        {% endblock %}
+
+        {% block pagedocumentsmobile %}{% endblock %}
+
+        {% get_coordonnees_data page.id data %}
+        {% if data.coordonnees %}
+        <div class="coordonnees sideblock">
+            <h4>Coordonnées</h4>
+            {% for d in data.coordonnees %}
+                {% if d.contact_name or d.contact_title %}
+                    <div class="contact">
+                        {% if d.ik_image %}<img src="{{MEDIA_URL}}{% thumbnail d.ik_image 75 100 %}" alt="" style="width:75px;border: 1px solid #dfdfdf;"/>{% endif %}
+                        {% if d.contact_name %}<p class="name">{{d.contact_name}}</p>{% endif %}
+                        {% if d.contact_title %}<p class="title">{{d.contact_title}}</p>{% endif %}
+                    </div>
+                {% endif %}
+                {% if d.telephone or d.fax or d.email %}
+                    <div class="numbers">
+                        {% if d.telephone %}<p class="phone" >{{d.telephone}}</p>{% endif %}
+                        {% if d.fax %}<p class="fax" >{{d.fax}}</p>{% endif %}
+                        {% if d.email %}<p class="email"><a href="mailto:{{d.email}}">Envoyer un courriel</a></p>{% endif %}
+                    </div>
+                {% endif %}
+
+                {% if d.address %}
+                    <div class="address">{{d.address|richtext_filters|safe}}</div>
+                {% endif %}
+            {% endfor %}
+            {% if data.useGeneralAddress %}
+                <p class="address"><strong>Hôtel de Ville</strong><br>1110, chemin Principal<br>Saint-Joseph-du-Lac, Québec<br>J0N 1M0</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    {% block cutecalendarmobile %}{% endblock %}
+</div>
+
+</div>
+</div>
+{% endblock %}

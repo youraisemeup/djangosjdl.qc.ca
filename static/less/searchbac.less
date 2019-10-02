@@ -1,0 +1,83 @@
+#bacsearch{
+    .arrow{
+        position:relative;
+        padding-left:(@grid-gutter-width/2) + 53px;
+        &:before{
+            content:'';
+            display:block;
+            width:46px;height:46px;
+            background:@environnementColor url(img/arrow.svg) no-repeat 50% 50%;
+            position:absolute;
+            top:-4px;left:@grid-gutter-width/2;
+            border-radius:23px;
+        }
+    }
+    .details{margin-top:40px;}
+}
+#recherchepoubelle{
+    h4{margin-top:30px;}
+    .results{
+        border-top:1px solid @environnementColor;
+        border-bottom:1px solid @environnementColor;
+        padding:7px 0 6px;
+        margin:35px 0 50px;
+    }
+    .keyword,.date{font-weight:600;}
+    .details{padding-left:51px;}
+    .icon-collecte{
+        position:relative;
+        padding-left:51px;
+        &:before{
+            content:'';
+            position:absolute;
+            top:-13px;left:0;
+            border:2px solid @environnementColor;
+            border-radius:23px;
+            display:block;
+            width:46px;height:46px;
+            background-color:#fff;
+            background-repeat:no-repeat;
+            background-position:50% 50%;
+        }
+        &.icon-bacbrun:before{
+            background-image:url(img/icon-bac-brun.png);
+        }
+        &.icon-bacbleu:before{
+            background-image:url(img/icon-bac-bleu.png);
+        }
+        &.icon-poubelle:before{
+            background-image:url(img/icon-poubelle.png);
+        }
+        &.icon-ecocentre:before{
+            background-image:url(img/icon-ecocentre.png);
+        }
+        &.icon-comite:before{
+            background-image:url(img/icon-comite.png);
+        }
+        &.icon-grenier:before{
+            background-image:url(img/icon-grenier.png);
+        }
+        &.icon-joujou:before{
+            background-image:url(img/icon-joujou.png);
+        }
+        &.icon-medoc:before{
+            background-image:url(img/icon-medoc.png);
+        }
+        &.icon-constantin:before{
+            background-image:url(img/icon-constantin.png);
+        }
+    }
+    .nextcollecte{
+        display:inline-block;
+        background:@environnementColor;color:#fff;
+        padding:6px 15px 5px 45px;
+        position:relative;
+        &:before{
+            content:'';
+            position:absolute;
+            top:7px;left:10px;
+            display:block;width:25px;height:26px;
+            background:url(img/icon-calendar.png);
+        }
+    }
+}

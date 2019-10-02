@@ -1,0 +1,15 @@
+{% extends "pages/documentpage.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block pagedocuments %}{% block pagedocumentsmobile %}
+    {{ block.super }}
+    <div class="sidedocuments sideblock">
+        <h4>{{ pageinfos.title}}</h4>
+        <ul>
+            {% regroup archives by publish_date|date:"Y" as docs_by_year %}
+            {% for archive in docs_by_year %}
+                <li><a href="{{pageinfos.path}}{{pageinfos.slug}}/{{archive.list.0.publish_date|date:'Y'}}">{{archive.list.0.publish_date|date:'Y'}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}{% endblock %}

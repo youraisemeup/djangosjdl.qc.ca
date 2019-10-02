@@ -1,0 +1,108 @@
+{% extends "pages/documentpage.html" %}
+{% load mezzanine_tags keyword_tags shortcodes_filters %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+{% if request.GET.sent %}
+<div class="alert alert-success" role="alert">
+    La Municipalité vous remercie d’avoir enregistré votre animal via le site Internet.
+    Notez que votre demande sera traitée dans les plus brefs délais et que la médaille attribuée à votre animal vous sera acheminée par courrier au cours des 5 à 10 prochains jours.<br/><br/>
+    Si vous n’avez toujours pas reçu votre médaille au-delà de cette période, nous vous invitons à communiquer avec nous au 450 623-1072.
+</div>
+{% endif %}
+
+{% if request.POST and not form.is_valid %}
+<div class="alert alert-danger" role="alert">
+    <strong>Erreur.</strong> Certains champs sont manquants ou invalides.
+</div>
+{% endif %}
+
+{{ block.super }}
+
+<div class="clearfix"></div>
+{% if request.GET.sent %}
+
+{% else %}
+    <div id="chien-form">
+    {% crispy form %}
+    </div>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('.autre').hide();
+
+        $('select[name=chien_race1], select[name=chien_race2], select[name=chien2_race1], select[name=chien2_race2]').on('change', function() {
+            if($(this).val() == 'Autre') {
+                $('.' + $(this).attr('name') + '_autre').show();
+            } else {
+                $('.' + $(this).attr('name') + '_autre').hide();
+            }
+        });
+
+        $('#add_dog').on('click', function() {
+            $(this).hide();
+            $('#chien-form input[name=chien2_active]').val('1');
+            $('#chien-form .chien2').slideDown();
+        });
+
+        $('#remove_dog').on('click', function() {
+            $('#chien-form .chien2').slideUp();
+            $('#chien-form .chien2').find('input, textarea, select').val('');
+            $('#chien-form .chien2').find('input[type=radio]:checked').prop('checked', false);
+            $('#add_dog').show();
+        });
+
+        $('#chien-form select[name=chien_sterilise]').on('change', function() {
+            if($(this).val() == 'oui') {
+                $('#chien-form .chien1 .sterilisation').show();
+            } else {
+                $('#chien-form .chien1 .sterilisation').hide();
+                $('#chien-form .chien1 .sterilisation').find('input, textarea, select').val('');
+            }
+        });
+
+        $('#chien-form select[name=chien2_sterilise]').on('change', function() {
+            if($(this).val() == 'oui') {
+                $('#chien-form .chien2 .sterilisation').show();
+            } else {
+                $('#chien-form .chien2 .sterilisation').hide();
+                $('#chien-form .chien2 .sterilisation').find('input, textarea, select').val('');
+            }
+        });
+
+        {% if request.POST and not form.is_valid %}
+
+            if($('#chien-form select[name=chien_sterilise]').val() == 'oui') {
+                $('#chien-form .chien1 .sterilisation').show();
+            }
+            if($('#chien-form select[name=chien2_sterilise]').val() == 'oui') {
+                $('#chien-form .chien2 .sterilisation').show();
+            }
+            if($('select[name=chien_race1]').val() == 'Autre') {
+                $('.chien_race1_autre').show();
+            }
+            if($('select[name=chien_race2]').val() == 'Autre') {
+                $('.chien_race2_autre').show();
+            }
+            if($('select[name=chien2_race1]').val() == 'Autre') {
+                $('.chien2_race1_autre').show();
+            }
+            if($('select[name=chien2_race2]').val() == 'Autre') {
+                $('.chien2_race2_autre').show();
+            }
+            if($('#chien-form input[name=chien2_active]').val() == '1') {
+                $('#chien-form .chien2').show();
+                $('#add_dog').hide();
+            }
+        {% endif %}
+    });
+</script>
+{% endblock %}

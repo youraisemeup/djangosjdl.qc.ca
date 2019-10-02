@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load pages_tags mezzanine_tags i18n future staticfiles common_tags %}
+
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block meta_desc %}Municipalité de Saint-Joseph-du-lac{% endblock %}
+
+{% block body_id %}home{% endblock %}
+
+{% block logo %}
+    <h1 class=""><a href="/" title="{{settings.SITE_TITLE}}" ><img class="logo" src="/static/images/logo-saint-joseph-du-lac.png" alt="{{settings.SITE_TITLE}}"/></a></h1>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <h2>À surveiller</h2>
+        <div class="row">
+            <div class="col-xs-12 col-md-9">
+                <div class="homeslider">
+                    {% if sliderimages %}
+                    <div class="cycle-slideshow"
+                        data-slides=" > .slide"
+                        data-cycle-fx="fade"
+                        data-cycle-swipe=true
+                        data-cycle-swipe-fx="scrollHorz"
+                        date-cycle-speed="500"
+                        data-cycle-prev="#prev"
+                        data-cycle-next="#next"
+                        data-cycle-pager="#slider-pager"
+                        data-cycle-pager-template="<span></span>">
+                        {% for image in sliderimages %}
+                        <div class="slide">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-8 image">
+                                    <div class="imgcontainer">
+                                    {% if image.ik_home_image %}
+                                        <img src="{{MEDIA_URL}}{% thumbnail image.ik_home_image 570 374 %}" alt="" class="hidden-xs"/>
+                                        <img src="{{MEDIA_URL}}{% thumbnail image.ik_home_image 570 374 %}" alt="" class="visible-xs img-responsive"/>
+                                    {% else %}
+                                        <img src="{{MEDIA_URL}}{% thumbnail image.ik_image 570 374 %}" alt="" class="hidden-xs"/>
+                                        <img src="{{MEDIA_URL}}{% thumbnail image.ik_image 570 374 %}" alt="" class="visible-xs img-responsive"/>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 details">
+                                    {% if image.type == 'events' %}
+                                    <p class="date"><span class="day">{{ image.date|date:'d' }}</span> {{ image.date|date:'F' }}</p>
+                                    {% endif %}
+                                    <p class="title">{{ image.title }}</p>
+                                    {% if image.s_excerpt_home %}
+                                        <p>{{ image.s_excerpt_home }}</p>
+                                    {% else %}
+                                        {{ image.content|richtext_filters|truncatewords_html:image.truncatevalue|safe }}
+                                    {% endif %}
+                                    {% if image.s_link %}
+                                        <a class="btn more" href="{{ image.s_link }}" target="_blank">En savoir plus</a>
+                                    {% elif image.type == 'news' %}
+                                        <a class="btn more" href="{% url 'news:detail' image.slug %}">En savoir plus</a>
+                                    {% else %}
+                                        <a class="btn more" href="{% url 'events:detail' image.slug %}">En savoir plus</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <a id="prev" href="#"></a>
+                        <a id="next" href="#"></a>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8"></div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div id="slider-pager"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3 jeveux">
+                {% if travaux %}
+                    <a class="travaux" href="{% url 'infotravaux:detail' travaux.0.slug %}" title="Chantiers routiers en cours">
+                        Chantiers routiers en cours
+                    </a>
+                    {% endif %}
+                <div class="shadow">
+                    <h2>Je veux</h2>
+                    {% get_usefullinks_list 1 links %}
+                    <ul class="">
+                        {% for link in links %}
+                        <li><a href="{{link.website}}">{{ link.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row threeblocks">
+            <div class="col-tn-12 col-xs-4 col-sm-4">
+               {% if bulletin %}
+                <a class="bulletin-municipal btnimage shadow" href="{{MEDIA_URL}}{{ bulletin.0.file }}" title="Bulletin Municipal">
+                    <img src="/static/css/img/btn-bulletin-municipal.png" alt="Bulletin Municipal" class="img-responsive"/>
+                </a>
+                {% endif %}                   
+                <!--<div class="shadow bulletin">
+                    {% if bulletin %}
+                            {% if bulletin.0.image %}
+                            <img src="{{MEDIA_URL}}{% thumbnail bulletin.0.image 85 110 %}" alt="" class=""/>
+                            {% endif %}
+                        <a class="btn more" href="{{MEDIA_URL}}{{ bulletin.0.file }}" target="_blank">Télécharger</a>
+                    {% endif %}
+                    Le bulletin municipal
+                </div> -->              
+            </div>
+            <div class="col-tn-12 col-xs-4 col-sm-4">
+                <a class="vie-democratique btnimage shadow" href="/decouvrir-saint-joseph-du-lac/vie-democratique/" title="Vie démocratique">
+                    <img src="/static/css/img/btn-vie-democratique.png" alt="Vie démocratique" class="img-responsive"/>
+                </a>
+            </div>
+               <!--<div class="col-tn-12 col-xs-4 col-sm-4">
+                <a class="ma-question-ville btnimage shadow" href="/ma-question-a-la-municipalite/" title="Ma question à la municipalité">
+                    <img src="/static/css/img/btn-ma-question-a-la-ville.png" alt="Ma question à la municipalité" class="img-responsive"/>
+                </a>
+            </div>-->  
+						<div class="col-tn-12 col-xs-4 col-sm-4">
+								<a class="elections-municipales btnimage shadow" href="/elections/" title="Élections">
+										<img src="../static/css/img/btn-election.png" alt="Élections municipales" class="img-responsive"/>
+								</a>
+						</div>							
+          
+        </div>
+        <div class="row hidden-xs hidden-sm">
+            <div class="col-xs-12 col-sm-3"></div>
+            <div class="col-sm-9"><h2>Actualités</h2></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-3 calendar">
+                <div class="shadow" id="cutecalendar">
+                    <h2>Calendrier</h2>
+                    {% if recentevents %}
+                        <ul>
+                        {% for event in recentevents %}
+                            <li class="{{ event.class }}">
+                                <div>
+                                    <span class="date">
+                                        <span class="day">{{ event.date|date:'d' }}</span>{{ event.date|date:'b' }}
+                                    </span>
+                                    <a href="{% url 'events:detail' event.event.slug %}">{{ event.event.title|truncatewords:10 }}</a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    <a class="btn more" href="/evenements">Voir plus</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-9 actualites">
+                <h2 class="visible-xs visible-sm">Actualités</h2>
+                <div class="row">
+                    {% if recentnews %}
+                    {% for news in recentnews %}
+                        <div class="col-xs-12 col-sm-4 actualite">
+                            <div class="shadow">
+                            {% if news.ik_image %}
+                                <img src="{{MEDIA_URL}}{% thumbnail news.ik_image 768 512 %}" alt="" class="img-responsive"/>
+                            {% endif %}
+                                <div class="details">
+                                    <p class="date">Publié le {{ news.publish_date|date:'l d F Y' }}</p>
+                                    <p class="title">{{ news.title }}</p>
+                                    {{ news.content|richtext_filters|removetags:"div"|truncatewords:40|safe }}
+                                    <a href="{% url 'news:detail' news.slug %}" class="btn more">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+                <a href="/nouvelles" title="Voir toutes les actualités" id="voirActus">Voir toutes les actualités</a>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

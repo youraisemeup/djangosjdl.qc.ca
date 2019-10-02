@@ -1,0 +1,36 @@
+{% extends "pages/documentpage.html" %}
+{% load mezzanine_tags shortcodes_filters %}
+{% load url from future %}
+
+
+
+
+
+
+{% block main %}
+{{ block.super }}
+{% if links %}
+    <div class="container">
+    {% for link in links %}
+        <div class="event row">
+            <div class="col-xs-12 col-sm-8">
+                <h3>{{ link.title }}</h3>
+                {{ link.excerpt|richtext_filters|shortcodes|safe }}
+                <div class="address">
+                    {% if link.address %}{{link.address}}<br/>{% endif %}
+                    {% if link.city %}{{link.city}}<br/>{% endif %}
+                    {% if link.zipcode %}{{link.zipcode}}<br/>{% endif %}
+                    {% if link.telephone %}{{link.telephone}}<br/>{% endif %}
+                    {% if link.fax %}{{link.fax}}<br/>{% endif %}
+                    {% if link.website %}<a href="{{link.website}}" target="" />{{link.website}}</a><br/>{% endif %}
+                    {% if link.contactname %}{{link.contactname}}<br/>{% endif %}
+                    {% if link.email %}<a href="mailto:{{link.email}}">{{link.email}}</a><br/>{% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>Il n'y a pas de producteurs pour le moment.</p>
+{% endif %}
+{% endblock %}

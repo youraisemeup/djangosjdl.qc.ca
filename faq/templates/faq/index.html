@@ -1,0 +1,29 @@
+{% extends "default.html" %}
+{% load mezzanine_tags keyword_tags shortcodes_filters %}
+
+{% block meta_title %}FAQ - {{settings.SITE_TITLE}}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+faq, saint joseph du lac
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+Foire aux question - Municipalité de Saint-Joseph-du-Lac
+{% endmetablock %}{% endblock %}
+
+{% block body_id %}listing{% endblock %}
+
+{% block title%}FAQ{% endblock %}
+
+{% block main %}
+{% if faqitems %}
+    {% for faq in faqitems %}
+        <div class="collapsableitem">
+            <h3>{{ faq.title }}</h3>
+            <div class="collapse">{{faq.content|richtext_filters|shortcodes|safe}}</div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>À venir.</p>
+{% endif %}
+{% endblock %}

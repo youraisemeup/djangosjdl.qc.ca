@@ -1,0 +1,69 @@
+{% extends "default.html" %}
+
+{% load mezzanine_tags common_tags widget_tweaks shortcodes_filters %}
+
+{% block extra_css %}
+    <style type="text/css" rel="stylesheet" media="print">
+    header,
+    footer,
+    .sidebar{display:none;}
+
+    </style>
+{% endblock %}
+
+{% block main %}
+
+<p>
+    <strong>{{form.firstname.value}} {{form.lastname.value}}</strong><br/>
+    Téléphone : {{form.phone.value}}<br/>
+    Courriel : {{form.email.value}}
+</p>
+
+    <table class="table">
+        <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+        </tr>
+        <tr>
+            <td>Livre du 150<sup>e</sup> <strong>sans coffret</strong></td>
+            <td>{{form.iCountWithout.value}}</td>
+            <td>{{ priceWithout }} $</td>
+        </tr>
+        <tr>
+            <td>Livre du 150<sup>e</sup> <strong>avec coffret</strong></td>
+            <td>{{form.iCountWith.value}}</td>
+            <td>{{ priceWith }} $</td>
+        </tr>
+        <tr>
+            <td colspan="2">Frais de poste (12.00$/exemplaire)</td>
+            <td>{{priceShipping}} $</td>
+        </tr>
+        <tr>
+            <td align=right colspan="2">Total:</td>
+            <td>{{total}} $</td>
+        </tr>
+    </table>
+
+<p>
+Faites parvenir ce formulaire et votre chèque incluant les frais de poste à l'adresse suivante&nbsp;:
+</p>
+<address>
+<strong>Livre du 150e</strong> <br />
+<strong>Hôtel de Ville</strong> <br />
+1110, Chemin Principal <br />
+Saint-Joseph-du-Lac, Québec  <br />
+J0N 1M0
+</address>
+
+{% endblock %}
+
+
+{% block footer_scripts %}
+    {{ block.super }}
+    <script>
+        $(function(){
+            window.print();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,226 @@
+<style>
+    body, td {
+        font-family: tahoma, sans-serif;
+        font-size: 12px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    table tr td {
+        border-bottom: 1px solid #ccc;
+        padding: 6px 15px 6px 0;
+    }
+
+    .gros_titre {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 18px;
+        color: #54b948;
+        margin-top: 15px;
+        margin-bottom:10px;
+    }
+
+    td.libelle {
+        width: 140px;
+    }
+</style>
+
+<p style="text-transform:uppercase"><strong>Demande d'enregistrement de chien</strong></p>
+
+<p class="gros_titre">Propriétaire de l'animal</p>
+
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td valign="top">
+            <table>
+                <tr>
+                    <td class="libelle"><strong>Prénom</strong><br/>
+                        {{ form.proprietaire_prenom.value }}</td>
+                </tr><tr>
+                    <td class="libelle right"><strong>Nom</strong><br/>
+                        {{ form.proprietaire_nom.value }}</td>
+                </tr><tr>
+                    <td class="libelle right"><strong>Téléphone</strong><br/>
+                        {{ form.proprietaire_telephone.value }}</td>
+                </tr><tr>
+                    <td class="libelle right"><strong>Téléphone secondaire</strong><br/>
+                        {{ form.proprietaire_telephone_secondaire.value }}</td>
+                </tr><tr>
+                    <td class="libelle right"><strong>Courriel</strong><br/>
+                        {{ form.proprietaire_courriel.value }}</td>
+                </tr>
+            </table>
+        </td>
+        <td valign="top">
+            <table>
+                <tr>
+                    <td class="libelle"><strong>No civique</strong><br/>
+                        {{ form.proprietaire_adresse_no_civique.value }}</td>
+                </tr><tr>
+                    <td class="libelle"><strong>Rue</strong><br/>
+                        {{ form.proprietaire_adresse_rue.value }}</td>
+                </tr><tr>
+                    <td class="libelle"><strong>App. / C.P.</strong><br/>
+                        {{ form.proprietaire_adresse_app.value }}</td>
+                </tr><tr>
+                    <td class="libelle"><strong>Code postal</strong><br/>
+                        {{ form.proprietaire_adresse_code_postal.value }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<p class="gros_titre">Identification du chien</p>
+
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td valign="top">
+            <table>
+                <tr>
+                    <td valign="top"><strong>Nom</strong><br/>
+                        {{ form.chien_nom.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Sexe</strong><br/>
+                        {{ form.chien_sexe.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Stérilisé ?</strong><br/>
+                        {{ form.chien_sterilise.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Âge</strong><br/>
+                        {{ form.chien_age.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Race principale</strong><br/>
+                        {{ form.chien_race1.value }}
+                        {% if form.chien_race1.value == 'Autre' %}
+                           &nbsp;: {{ form.chien_race1_autre }}
+                        {% endif %}
+                    </td>
+                </tr><tr>
+                    <td valign="top"><strong>Race secondaire</strong><br/>
+                        {{ form.chien_race2.value }}
+                        {% if form.chien_race2.value == 'Autre' %}
+                            &nbsp;: {{ form.chien_race2_autre }}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td valign="top">
+            <table>
+                <tr>
+                    <td valign="top"><strong>Couleur principale</strong><br/>
+                        {{ form.chien_couleur1.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Couleur secondaire</strong><br/>
+                        {{ form.chien_couleur2.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Numéro de micropuce</strong><br/>
+                        {{ form.chien_micropuce.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Marques distinctives</strong><br/>
+                        {{ form.chien_marques.value }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {% if form.chien_sterilise.value == 'oui' %}
+    <tr>
+        <td colspan="2">
+            <table>
+                <tr>
+                    <td valign="top"><strong>Stérilisation</strong></td>
+                </tr><tr>
+                    <td valign="top"><strong>Nom de la clinique vétérinaire</strong><br/>
+                        {{ form.chien_sterilisation_clinique_nom.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Adresse de la clinique vétérinaire</strong><br/>
+                        {{ form.chien_sterilisation_clinique_adresse.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Téléphone de la clinique vétérinaire</strong><br/>
+                        {{ form.chien_sterilisation_clinique_telephone.value }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {% endif %}
+</table>
+
+{% if form.chien2_active.value = '1' %}
+<p class="gros_titre">Identification du second chien</p>
+
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td valign="top">
+            <table>
+                <tr>
+                    <td valign="top"><strong>Nom</strong><br/>
+                        {{ form.chien2_nom.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Sexe</strong><br/>
+                        {{ form.chien2_sexe.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Stérilisé ?</strong><br/>
+                        {{ form.chien2_sterilise.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Âge</strong><br/>
+                        {{ form.chien2_age.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Race principale</strong><br/>
+                        {{ form.chien2_race1.value }}
+                        {% if form.chien2_race1.value == 'Autre' %}
+                        &nbsp;: {{ form.chien2_race1_autre }}
+                        {% endif %}
+                    </td>
+                </tr><tr>
+                    <td valign="top"><strong>Race secondaire</strong><br/>
+                        {{ form.chien2_race2.value }}
+                        {% if form.chien2_race2.value == 'Autre' %}
+                        &nbsp;: {{ form.chien2_race2_autre }}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td valign="top">
+            <table>
+                <tr>
+                    <td valign="top"><strong>Couleur principale</strong><br/>
+                        {{ form.chien2_couleur1.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Couleur secondaire</strong><br/>
+                        {{ form.chien2_couleur2.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Numéro de micropuce</strong><br/>
+                        {{ form.chien2_micropuce.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Marques distinctives</strong><br/>
+                        {{ form.chien2_marques.value }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {% if form.chien2_sterilise.value == 'oui' %}
+    <tr>
+        <td colspan="2">
+            <table>
+                <tr>
+                    <td valign="top"><strong>Stérilisation</strong></td>
+                </tr><tr>
+                    <td valign="top"><strong>Nom de la clinique vétérinaire</strong><br/>
+                        {{ form.chien2_sterilisation_clinique_nom.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Adresse de la clinique vétérinaire</strong><br/>
+                        {{ form.chien2_sterilisation_clinique_adresse.value }}</td>
+                </tr><tr>
+                    <td valign="top"><strong>Téléphone de la clinique vétérinaire</strong><br/>
+                        {{ form.chien2_sterilisation_clinique_telephone.value }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {% endif %}
+</table>
+{% endif %}

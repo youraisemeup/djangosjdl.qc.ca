@@ -1,0 +1,11 @@
+{% overextends "admin/login.html" %}
+
+{% block content %}
+<div class="container" style="text-align:center;position:relative;top:80px;">
+        <img src="{{MEDIA_URL}}logo_cyber.gif" alt="" />
+        <h1>Gestionnaire de contenu Web</h1>
+    </div>
+{{ block.super }}
+
+{% endblock %}
+

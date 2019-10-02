@@ -1,0 +1,75 @@
+{% extends "default.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block meta_title %}{{ pageinfos.metatitle }} - {{settings.SITE_TITLE}}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+seances proces-verbaux, conseil municipal, saint joseph du lac
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ pageinfos.metadesc }}
+{% endmetablock %}{% endblock %}
+{% block title%}{{ pageinfos.h1title }} - {{currentyear}}{% endblock %}
+
+{% block pagedocuments %}{% block pagedocumentsmobile %}
+    {{ block.super }}
+    <div class="sidedocuments sideblock">
+        <h4>Archives</h4>
+        <ul>
+            {% regroup documents by publish_date|date:"Y" as docs_by_year %}
+            {% for archive in docs_by_year %}
+                <li><a href="/publications/{{archive.list.0.publish_date|date:'Y'}}">{{archive.list.0.publish_date|date:'Y'}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}{% endblock %}
+
+{% block main %}
+
+{% if bulletins %}
+<h3>Bulletins municipaux</h3>
+    <ul class="nobullets">
+    {% for document in bulletins %}
+        <li><a href="{{ MEDIA_URL }}{{ document.file }}" class="pdf">{{ document.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if calendriers %}
+<h3>Calendriers municipaux</h3>
+    <ul class="nobullets">
+    {% for document in calendriers %}
+        <li><a href="{{ MEDIA_URL }}{{ document.file }}" class="pdf">{{ document.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if loisirs %}
+<h3>Info loisirs</h3>
+    <ul class="nobullets">
+    {% for document in loisirs %}
+        <li><a href="{{ MEDIA_URL }}{{ document.file }}" class="pdf">{{ document.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if communiques %}
+<h3>Communiqués de presse</h3>
+    <ul class="nobullets">
+    {% for document in communiques %}
+        <li><a href="{{ MEDIA_URL }}{{ document.file }}" class="pdf">{{ document.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if avis %}
+<h3>Avis publics</h3>
+    <ul class="nobullets">
+    {% for document in avis %}
+        <li><a href="{{ MEDIA_URL }}{{ document.file }}" class="pdf">{{ document.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

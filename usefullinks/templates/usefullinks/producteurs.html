@@ -1,0 +1,41 @@
+{% extends "default.html" %}
+{% load mezzanine_tags shortcodes_filters %}
+{% load url from future %}
+{% block meta_title %}{{title}}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+producteurs, saint joseph du lac, agrotourisme
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+Découvrez les producteurs locaux en agrotourisme à Saint-Joseph-du-Lac!
+{% endmetablock %}{% endblock %}
+
+{% block title%}{{title}}{% endblock %}
+
+{% block body_id %}listing{% endblock %}
+
+{% block main %}
+{% if links %}
+    <div class="paginationtop">{% pagination_for links %}</div>
+    <div>
+    {% for link in links %}
+        <div class="event row">
+            <div class="col-xs-12 col-sm-4">
+                {% if link.ik_image %}
+                <a href="{# url 'usefullinks.views.fiche' link.slug #}{{ link.get_absolute_url }}"><img class="img-responsive" src="{{MEDIA_URL}}{% thumbnail link.ik_image 385 289 %}" alt=""/></a>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <h3>{{ link.title }}</h3>
+                {{link.excerpt|richtext_filters|truncatewords_html:30|safe}}
+                <a class="btn more" href="{# url 'usefullinks.views.fiche' link.slug #}{{ link.get_absolute_url }}">En savoir plus</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="paginationbottom">{% pagination_for links %}</div>
+{% else %}
+    <p>Il n'y a pas de producteurs pour le moment.</p>
+{% endif %}
+{% endblock %}

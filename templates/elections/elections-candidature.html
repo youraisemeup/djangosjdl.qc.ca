@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Élections Candidature 2019" %}{% endblock %}
+{% block title %}{% trans "Élections Candidature 2019" %}{% endblock %}
+
+{% block extra_css %}
+<!-- ICI, ON PEUT CALLER DES FICHIERS CSS SUPPLÉMENTAIRES, SI ON NE VEUT PAS MODIFIER DES FICHIERS EXISTANTS -->
+<!-- PAS DE JAVASCRIPT, CE QUI EST ICI VA ÊTRE COMPILÉ, SEUL LE CSS PEUT L'ÊTRE -->
+{% endblock %}
+
+
+{% block extra_head %}
+<!-- DU STOCK DE PLUS POUR LE HEAD. ON PEUT AJOUTER DES JS ICI -->
+{% endblock %}
+
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block content %}
+
+<!--
+    ENTIÈRETÉ DU BLOCK ENTRE LE HEADER ET LE FOOTER
+    POUR REFAIRE UN NOUVEAU DESIGN EN GARDANT DES ÉLÉMENTS DE BASE GÉNÉRÉS PAR LE CODE PYTHON
+    DUPLIQUER BASE.HTML, LUI DONNER UN AUTRE NOM, ET CHANGER LE "EXTENDS" AU TOP DE CE FICHIER.
+    TOUT CE QUI EST DANS DES BALISES BLOCK XXXX PEUT ÊTRE MODIFIÉ PAR HÉRITAGE
+-->
+			
+		<!-- Elections Header -->
+		<div class="container spacer-bottom-lg">
+			<div class="row spacer-bottom-sm">
+				<div class="col-md-12">
+					<a href="/elections"><img src="../static/images/header_elections.jpg" alt="Élections" class="img-responsive img-full" /></a>
+				</div>
+			</div>
+			
+			
+			<div class="row spacer-bottom-lg">
+				<div class="col-md-4">
+					<div class="electionSub">
+						<a href="/elections-informations" class="electionBtn electionBtn--sm">
+							<img src="../static/images/02ico.svg" />
+							<p>Obtenir de<br> l'information</p>
+						</a>
+						<ul class="list-unstyled electionSub__menu">
+							<li><a href="/elections-informations#section01" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Conseil municipal et élus</a></li>
+							<li><a href="/elections-informations#section02" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Calendrier électoral 2019</a></li>
+							<li><a href="/elections-informations#section03" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Foire aux questions</a></li>
+						</ul>						
+					</div>
+				</div>	
+				<div class="col-md-4">
+					<div class="electionSub">
+						<a href="/elections-candidature" class="electionBtn electionBtn--sm active">
+							<img src="../static/images/03ico.svg" />
+							<p>Je pose ma<br> candidature</p>
+						</a>
+						<ul class="list-unstyled electionSub__menu">
+							<li><a href="#accordion1" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Êtes-vous éligible</a></li>
+							<li><a href="#accordion2" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Types de candidatures</a></li>
+							<li><a href="#accordion3" class="btn-accordion"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Déclaration de candidature</a></li>
+						</ul>
+					</div>
+				</div>								
+				<div class="col-md-4">
+					<a href="/elections-resultats" class="electionBtn electionBtn--sm">
+						<img src="../static/images/01ico.svg" />
+						<p>Les<br> résultats</p>
+					</a>
+				</div>									
+			</div>						
+					
+						
+
+			<div class="row spacer-bottom-md">
+				<div class="col-md-10 col-md-offset-1 wysiwyg">
+					<p>Être conseillère ou conseiller vous permet d’étendre votre action à l’échelle de votre communauté et d’agir directement sur ses destinées. Toutefois, avant de vous lancer en politique municipale, vous devez évaluer votre profil et connaître les exigences du rôle de l’élu.</p>
+					<p>Des gens de tous les horizons décident de poser leur candidature à un poste électif dans leur municipalité. Si vous êtes une personne active dans votre communauté ou si des enjeux collectifs vous tiennent à cœur, vous possédez déjà une qualité essentielle. De plus, le sens de la collectivité, l’écoute, le goût de l’engagement et la capacité d’analyse sont aussi des qualités essentielles au rôle d’élu. </p>
+					<p>Par ailleurs, mener une campagne électorale et occuper un poste au conseil municipal nécessitent du dévouement et du temps. En plus de la campagne électorale et de la présence requise aux divers comités, assemblées, commissions et rencontres avec la population, il faut prévoir du temps pour l’étude des dossiers, la lecture de rapports, la préparation de réunions, etc. Ces considérations doivent être évaluées afin que votre expérience puisse être profitable autant pour vous que pour les personnes que vous pourriez représenter au conseil municipal.</p>
+					<p><strong>Les formulaires nécessaires pour une mise en candidature sont disponibles à l’hôtel de ville, situé au 1110 chemin Principal. Toute personne intéressée peut s’adresser au président d’élection ou à la secrétaire d’élection afin d’obtenir une pochette d’information à cet effet. </strong></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					
+					<!-- Accordeon -->
+					<div data-accordion-group>
+						<div id="accordion1" class="accordion" data-accordion>
+							<div data-control>Êtes-vous éligible?</div>
+							<div data-content>
+								<div>
+									<p>Avant de poser votre candidature à l’élection partielle du district 5, du Berceau, de Saint-Joseph-du-Lac, vous devez d’abord savoir si vous remplissez les conditions requises pour vous présenter à un poste de membre du conseil. La <em>Loi sur les élections et les référendums dans les municipalités</em> prévoit les conditions d’éligibilité suivantes : </p>
+									<ul>
+										<li>d’avoir le droit d’être inscrit sur la liste électorale de la municipalité;</li>
+										<li>de résider de façon continue ou non sur le territoire de la municipalité dans les douze derniers mois précédant le 9 septembre de l’année de l’élection;</li>
+									</ul>
+									<p>Pour avoir le droit d’être inscrit sur la liste électorale du district 5 de la municipalité, vous devez être un électeur de celle-ci le 9 septembre de l’année de l’élection, c’est-à-dire : </p>
+									<ul>
+										<li>être une personne physique;</li>
+										<li>être majeur;</li>
+										<li>être de citoyenneté canadienne;</li>
+										<li>ne pas être dans un cas d’incapacité de voter prévu par la loi : sous curatelle ou reconnu coupable d’une infraction constituant une manœuvre électorale frauduleuse;</li>
+									</ul>
+									<p><strong>ET, le 9 septembre 2019</strong></p>
+									<ul>
+										<li>remplir l’une des deux conditions suivantes :
+											<ul>
+												<li>être domicilié sur le territoire de la municipalité et, depuis au moins six mois, au Québec;</li>
+												<li>être, depuis au moins douze mois, le propriétaire d’un immeuble ou l’occupant d’un établissement d’entreprise situé dans votre municipalité. </li>
+											</ul>
+										</li>										
+									</ul>
+									<p>Certaines situations pourraient vous empêcher de poser votre candidature à un poste électif de votre municipalité. Il est de votre responsabilité de vérifier si vous êtes éligible avant de poser votre candidature à un poste de membre du conseil de votre municipalité. À cet égard, vous devriez consulter les articles 61 à 67 ainsi que les articles 300 à 307 de la Loi sur les élections et les référendums dans les municipalités qui traitent des conditions requises pour vous porter candidat et des motifs d’inhabilité. L’article 632 de cette même loi mentionne qu’une personne commet une infraction lorsqu’elle pose sa candidature tout en sachant qu’elle n’est pas éligible. </p>
+									<p>Vous pouvez également obtenir ces renseignements du président d’élection de Saint-Joseph-du-Lac, Stéphane Giguère.</p>
+								</div>
+							</div>
+						</div>
+						<div id="accordion2" class="accordion" data-accordion>
+							<div data-control>Types de candidatures</div>
+							<div data-content>
+								<div>
+									<p>Une personne peut poser sa candidature à un seul poste de membre du conseil d'une municipalité.</p>
+									<p>Vous pouvez fonder un parti politique ou vous associer à un parti politique déjà formé. Un parti politique est une organisation dont les membres mènent une action commune en vue de faire élire des personnes au conseil municipal et d'y exercer le pouvoir. </p>
+									<h4>Soumettre une demande d’autorisation</h4>
+									<p>Pour pouvoir solliciter ou recueillir des contributions, effectuer des dépenses ou contracter des emprunts, tout parti doit être titulaire d’une autorisation du Directeur général des élections. Cette demande, faite par le chef du parti, doit inclure, notamment : </p>
+									<ul>
+										<li>le nom du parti;</li>
+										<li>l’adresse postale du parti;</li>
+										<li>l’adresse du bureau permanent du parti, le cas échéant;</li>
+										<li>les coordonnées du chef du parti, de deux dirigeants du parti, autres que le chef, et du représentant officiel du parti et, le cas échéant, de ses délégués;</li>
+										<li>le montant des fonds dont dispose le parti;</li>
+										<li>le nom de la municipalité dans laquelle le parti propose des candidats;</li>
+										<li>une liste mentionnant le nom, l’adresse, le numéro de la carte de membre et sa date d’expiration ainsi que la signature d’un nombre minimal de membres du parti. Le nombre de membres nécessaire s’établit comme suit :
+											<ul>
+												<li>25, dans le cas d'une municipalité de 5 000 habitants ou plus, mais de moins de 50 000 habitants.</li>
+											</ul>
+										</li>
+									</ul>
+									<h4>Le nom du parti</h4>
+									<p>Certaines dispositions de la Loi sur les élections et les référendums dans les municipalités réglementent le nom d’un parti politique. Par ailleurs, avant de présenter une demande d’autorisation au Directeur général des élections, vous pouvez réserver le nom du parti pendant six mois. Le nom d’un parti politique autorisé par le Directeur général des élections est protégé. </p>
+									<h4>Financement et dépenses</h4>
+									<p>La Loi sur les élections et les référendums dans les municipalités oblige les partis politiques désirant recueillir des contributions et engager des dépenses à être autorisés par le Directeur général des élections. De plus, ils doivent respecter certaines règles en matière de financement et de contrôle des dépenses électorales, en vertu du chapitre XIII de la Loi sur les élections et les référendums dans les municipalités. </p>
+									<h4>Soumettre sa candidature à titre de candidat indépendant</h4>
+									<p>Vous pouvez briguer un poste au conseil municipal à titre de candidat indépendant. Vous ne serez alors affilié à aucun parti ni à aucune équipe reconnue. </p>
+									<p>Toute personne qui se présente à titre de candidat indépendant et qui désire recueillir des contributions et engager des dépenses électorales doit avoir une autorisation. Pour ce faire, elle doit présenter une demande écrite d’autorisation en ce sens au président d’élection de sa municipalité. </p>
+									<p>Pour l’élection partielle 2019 pour le district 5, cette demande peut être faite à compter du 27 septembre 2019. Pendant la période prévue pour la production d’une déclaration de candidature, la demande d’autorisation peut être faite lors de la production de la déclaration.</p>
+									<p>Dans les municipalités de 5 000 habitants ou plus, dont Saint-Joseph-du-Lac, il est possible d’être candidat indépendant sans recueillir de contributions ni engager de dépenses électorales. Dans ce cas, il n’est pas nécessaire d’obtenir une autorisation du Directeur général des élections.</p>
+								</div>
+							</div>
+						</div>	
+						<div id="accordion3" class="accordion" data-accordion>
+							<div data-control>Déclaration de candidature</div>
+							<div data-content>
+								<div>
+									<p>Si vous voulez vous présenter comme candidat et que vous répondez aux conditions d’éligibilité prévues par la Loi sur les élections et les référendums dans les municipalités, vous devez remettre une déclaration de candidature dûment remplie auprès de Stéphane Giguère, président d’élection, entre le 27 septembre et le 11 octobre 2019, aux jours et heures d’ouverture du bureau qui seront communiqués dans un avis public à venir.</p>
+									<h4>La déclaration</h4>
+									<p>La déclaration de candidature est un document officiel que vous pouvez vous procurer au bureau du président d’élection de Saint-Joseph-du-Lac, au 1110, chemin Principal. Ce document sert à : </p>
+									<ul>
+										<li>vous identifier en tant que candidat;</li>
+										<li>préciser le poste électif pour lequel vous vous présentez;</li>
+										<li>identifier, le cas échéant, le parti ou l’équipe que vous représentez;</li>
+										<li>présenter le nombre de signatures d’appui requises à votre candidature en vertu de la loi.</li>
+									</ul>
+									<p>Les signatures, provenant des électeurs de la municipalité, ne peuvent être recueillies que par la personne qui soumet sa candidature ou par une personne désignée à cette fin sur la déclaration de candidature. Le nombre minimal de signatures d’électeurs appuyant votre candidature varie selon le poste électif et la taille de votre municipalité.</p>
+									
+									<h4>Pour le poste de maire ou de maire d’arrondissement*</h4>
+									<div class="table-responsive">
+										<table class="table table-striped table-striped-sm">
+											<thead>
+												<tr>
+													<th>Nb. min. de signatures d’électeurs de la municipalité</th>
+													<th>Population</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>10</td>
+													<td>5 000 habitants ou plus</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									
+									<h4>Pour le poste de conseiller</h4>
+									<div class="table-responsive">
+										<table class="table table-striped table-striped-sm">
+											<thead>
+												<tr>
+													<th>Nb. min. de signatures d’électeurs de la municipalité</th>
+													<th>Population</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>10</td>
+													<td>5 000 habitants ou plus, mais moins de 20 000 habitants</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>									
+
+									<p>Une fois déposée et acceptée par le président d’élection, la déclaration de candidature devient publique et accessible à toute personne qui en fait la demande. En revanche, tant que cette étape n’est pas franchie, vous avez droit à la confidentialité et le président d’élection ne peut pas dévoiler le nom des personnes qui se sont procuré le formulaire de déclaration de candidature.</p>
+									<h4>Retrait de sa candidature</h4>
+									<p>En tout temps, vous pouvez retirer votre candidature sans pénalité. Pour ce faire, vous devez transmettre au président d’élection un avis signé en ce sens. </p>
+									<p>Un avis de retrait de candidature est également nécessaire si, avant la fin de la période de mise en candidature, vous souhaitez vous présenter à un autre poste. Vous devrez alors déposer une nouvelle déclaration de candidature.</p>
+									<h4>Élection sans opposition</h4>
+									<p>Si, à 16 h 30 le 11 octobre 2019, soit à la fin de la période prévue par la loi pour la production des déclarations de candidature, vous êtes la seule personne à avoir produit une déclaration de candidature à un poste, vous serez alors proclamé élu sans opposition. Votre mandat commencera à la suite de votre assermentation, ce qui doit se faire dans les 30 jours suivant la proclamation de votre élection.</p>
+								</div>
+							</div>
+						</div>												
+						<div class="accordion" data-accordion>
+							<div data-control>Campagne électorale</div>
+							<div data-content>
+								<div>
+									<h4>Représentant officiel et agent officiel</h4>
+									<p>Dans les municipalités de 5 000 habitants ou plus, un parti ou un candidat indépendant qui est autorisé ou qui sollicite une autorisation doit désigner un représentant officiel chargé de recueillir des contributions électorales de même qu’un agent officiel chargé des dépenses électorales. Il est possible pour un parti qu’une seule personne agisse comme représentant officiel et agent officiel. Pour un candidat indépendant autorisé, le représentant officiel et l’agent officiel sont obligatoirement la même personne. Il est également possible que le candidat indépendant autorisé soit lui-même son propre représentant officiel et agent officiel. </p>
+									<p>Un parti peut également avoir un délégué de son représentant officiel pour chacun des districts électoraux, ainsi que des adjoints de son agent officiel. </p>
+									<p>À compter du 1er janvier 2017, le représentant officiel d’un parti autorisé et ses délégués doivent, dans un délai de 30 jours suivant leur nomination, suivre une formation concernant les règles de financement politique et de dépenses électorales donnée par le Directeur général des élections (DGEQ). Ce délai est de 10 jours dans le cas du représentant officiel d’un candidat indépendant autorisé.</p>
+									<p>Lorsque l’agent officiel et le représentant officiel ne sont pas une même personne, l’agent officiel et ses adjoints doivent suivre une formation concernant les règles de dépenses électorales dans un délai de 10 jours suivant leur nomination. </p>
+									<h4>Les représentantes et les représentants </h4>
+									<p>En tant que candidat, vous avez le droit d’assister au déroulement du scrutin et du vote par anticipation. Puisque vous ne pouvez surveiller vos intérêts dans tous les bureaux de vote à la fois, la Loi sur les élections et les référendums dans les municipalités vous accorde le droit de désigner un représentant dans chacun de ces bureaux de vote. </p>
+									<p>Le rôle du représentant est de voir à ce que tout se déroule normalement à son bureau de vote. Il n’est pas obligatoire qu’il ait la qualité d’électeur, qu’il soit domicilié dans la municipalité ou qu’il ait atteint la majorité. Par contre, avoir été reconnu coupable d’une manœuvre électorale frauduleuse au cours des cinq dernières années rend une personne inhabile à occuper cette fonction. </p>
+									<p>Vos représentants devront, le jour du scrutin ou le jour du vote par anticipation, remettre au scrutateur de leur bureau de vote une procuration signée par vous. Celle-ci est valide pour toute la durée du scrutin et du dépouillement des votes au bureau de vote auquel ils sont affectés. </p>
+									<h4>Le financement et les dépenses électorales</h4>
+									<p>Prenez note que de nouvelles règles relatives au financement et aux dépenses électorales entrent en vigueur le 1er janvier 2017 à la suite de l’adoption du projet de loi no 83, Loi modifiant diverses dispositions législatives en matière municipale concernant notamment le financement politique. Il vous est fortement recommandé de consulter le site Web du DGEQ (<a href="http://www.electionsquebec.qc.ca" target="_blank">www.electionsquebec.qc.ca</a>) ou de communiquer avec le trésorier de votre municipalité pour prendre connaissance des règles applicables. </p>
+									<p>Vous pouvez choisir de ne pas recueillir de contributions et de n’effectuer aucune dépense électorale. Il est toutefois probable que vous choisissiez de vous constituer un fonds électoral destiné à votre campagne, ne serait-ce que pour payer certains frais administratifs et de soutien (lignes téléphoniques, déplacements, etc.) et vous assurer d’une certaine visibilité auprès de vos électeurs. </p>
+									<p>Pour favoriser l’équité et la transparence, la Loi sur les élections et les référendums dans les municipalités régit le financement politique et les dépenses électorales. Elle distingue deux catégories de municipalités pour lesquelles les règles diffèrent : celles de moins de 5 000 habitants et celles de 5 000 habitants ou plus.</p>
+									<p>Pour recueillir des contributions et engager des dépenses électorales, les candidats indépendants et les partis politiques doivent être autorisés et désigner un représentant officiel et un agent officiel dans leur demande d’autorisation.</p>
+									<p>Seuls les électeurs de la municipalité ont le droit de faire des contributions, en argent, biens ou services, pour une valeur, lors d’une année électorale, d’au plus 200 $ par candidat indépendant ou par parti politique. Outre ces contributions, un candidat indépendant ou le candidat d’un parti peut verser, pour son bénéfice ou celui de son parti, des contributions dont le total ne dépasse pas 800 $. Toute contribution en argent à un candidat ou à un parti politique peut, sous réserve des conditions et des règles établies par Revenu Québec, donner lieu à un crédit d’impôt. En année non électorale, la contribution maximale d’un électeur est de 100 $.</p>
+									<p>Les dépenses électorales des partis politiques et des candidats sont limitées. En effet, la Loi sur les élections et les référendums dans les municipalités prévoit un plafond de dépenses en fonction de la taille de votre municipalité ou de votre district électoral. Vous êtes invité à communiquer avec Mme Chantal Ladouceur, trésorière des élections, pour connaître ce montant.</p>
+									<p>Les dépenses électorales effectuées conformément à la Loi sur les élections et les référendums dans les municipalités peuvent être remboursées à 70 % après avoir été soustraites du financement public complémentaire. Pour y avoir droit, le candidat, qu’il soit indépendant ou qu’il se présente pour un parti, doit avoir été élu ou avoir obtenu au moins 15 % des votes. </p>
+									<p>Le versement de l’appariement et le remboursement des dépenses électorales sont effectués au même moment, après que le rapport de dépenses électorales, accompagné des pièces justificatives, a été transmis au  trésorier et vérifié. Toutefois, à compter du cinquième jour suivant celui du scrutin, le trésorier peut verser une avance sur ces sommes équivalant à 50 % du montant estimé dans un rapport simplifié. </p>
+									<h4>Les courses à la chefferie</h4>
+									<p>La Loi sur les élections et les référendums dans les municipalités prévoit un encadrement du financement et des dépenses lors des courses à la direction des partis politiques. Ces règles s’inspirent des dispositions relatives au financement et aux dépenses électorales déjà prévues dans cette loi et ont pour but de rendre les courses plus transparentes. Pour vous assurer de respecter ces nouvelles règles, veuillez consulter la <a href="http://legisquebec.gouv.qc.ca/fr/ShowDoc/cs/E-2.2" target="_blank">Loi sur les élections et les référendums dans les municipalités</a> ainsi que le <a href="http://www.electionsquebec.qc.ca./francais/" target="_blank">site Web du Directeur général des élections</a>.</p>
+								</div>
+							</div>
+						</div>	
+						<div class="accordion" data-accordion>
+							<div data-control>Lendemain des élections</div>
+							<div data-content>
+								<div>
+									<p>Que vous soyez élu ou non, vous devrez vous assurer de vous conformer aux chapitres XIII et XIV de la Loi sur les élections et les référendums dans les municipalités relativement au financement et aux dépenses électorales. Vous pourriez notamment avoir à transmettre un rapport financier, un rapport de dépenses électorales ou une déclaration selon laquelle vous n’avez recueilli aucun don ou effectué aucune dépense. Le Directeur général des élections publie des guides et des directives à cet effet s’appliquant soit <a href="http://www.electionsquebec.qc.ca/francais/municipal/financement-et-depenses-electorales/formulaires-et-guides.php" target="_blank">aux municipalités de 5 000 habitants ou plus</a>.</p>
+									<p>Si vous êtes élu, votre mandat débute au moment même où vous prêtez serment. Pour exercer votre mandat conformément à la loi, quatre formalités sont obligatoires :</p>
+									<ul>
+										<li>la proclamation d’élection;</li>
+										<li>l’assermentation;</li>
+										<li>la déclaration des intérêts pécuniaires;</li>
+										<li>la formation sur l’éthique et la déontologie.</li>
+									</ul>
+									<h4>La proclamation d’élection</h4>
+									<p>La proclamation officielle de votre élection est faite au moyen d’un écrit signé par le président d’élection de la municipalité. En cas d’élection sans opposition, la proclamation d’élection se fait à la fin de la période prévue pour la production des déclarations de candidature. Si l’élection s’est faite par scrutin, elle se tiendra dans les quatre jours qui suivent la fin du recensement des votes. Il s’agit de la période prévue par la loi pour demander un nouveau dépouillement ou un nouveau recensement des votes.</p>
+									<h4>L’assermentation</h4>
+									<p>À partir du moment où vous êtes proclamé élu, vous avez 30 jours pour prêter le serment selon lequel vous exercerez vos fonctions conformément à la loi. À défaut de prêter serment dans ce délai de 30 jours, il y a vacance à votre poste et une nouvelle élection doit avoir lieu. </p>
+									<h4>La déclaration des intérêts pécuniaires</h4>
+									<p>Afin d’éviter de vous placer en situation potentielle de conflit d’intérêts et de rendre l’administration municipale la plus transparente possible, la Loi sur les élections et les référendums dans les municipalités exige que vous produisiez une déclaration de vos intérêts pécuniaires dans les 60 jours qui suivent la proclamation de votre élection. </p>
+									<p>Les intérêts pécuniaires que vous devez déclarer sont de deux ordres :</p>
+									<ul>
+										<li>ceux que vous détenez dans des immeubles, y compris la résidence familiale, situés sur le territoire de la municipalité ou de la municipalité régionale de comté ou de la communauté métropolitaine qui vous concerne;</li>
+										<li>ceux que vous avez dans des personnes morales, des sociétés et des entreprises, peu importe l’endroit où celles-ci exercent leurs activités, pourvu qu’elles soient susceptibles de conclure des marchés ou des contrats avec la municipalité ou tout autre organisme municipal dont vous ferez partie comme membre du conseil municipal. </li>
+									</ul>
+									<p>Vous devez déclarer les emprunts dont le solde en capital et en intérêts est supérieur à 2 000 $ et qui ont été contractés auprès de personnes autres qu’un établissement financier. Vous devez également déclarer les prêts de plus de 2 000 $ accordés à d’autres personnes que les membres de votre famille immédiate. </p>
+									<p>Enfin, votre déclaration doit aussi faire mention des emplois et des postes d’administrateur que vous occupez en plus de votre charge d’élu.</p>
+									<h4>Conséquence d’une déclaration fausse ou incomplète</h4>
+									<p>Si vous déposez une déclaration volontairement fausse ou incomplète et que vous êtes reconnu coupable d’une telle infraction, la sanction prévue est l’inhabilité à exercer la fonction de membre du conseil. Votre inhabilité dure cinq ans à partir de la date du jugement qui aura été prononcé. Vous ne pourrez plus exercer votre fonction d’élu ni soumettre votre candidature à un poste de membre du conseil d'aucune municipalité durant cette période. </p>
+									<h4>La formation sur l’éthique et la déontologie</h4>
+									<p>Les municipalités ont la responsabilité d’adopter un code d’éthique et de déontologie pour les élus municipaux. Ce code énonce les principales valeurs de la municipalité en matière d’éthique et guide les membres du conseil municipal de la municipalité dans l’appréciation des règles déontologiques. </p>
+									<p>En vertu de la Loi sur l’éthique et la déontologie en matière municipale et à titre de membre d’un conseil municipal, vous devrez participer à une formation sur l’éthique et la déontologie dans les six mois suivant le début de votre mandat, à moins que vous en ayez déjà suivi une. </p>
+									<p>Un manquement à une règle prévue à un code d’éthique et de déontologie peut entraîner l’imposition d’une sanction.</p>
+									<p>Pour obtenir plus d’information sur l’éthique et la déontologie, vous êtes invité à consulter la section traitant de ce sujet dans le <a href="http://www.cmq.gouv.qc.ca/" target="_blank">site Web de la Commission municipale du Québec</a>.</p>
+									<h4>Pour en savoir plus</h4>
+									<p>Le <a href="https://www.electionsmunicipales.gouv.qc.ca/fileadmin/publications/elections/guide_accueil_elus_municipaux.pdf" target="_blank">Guide d’accueil et de référence pour les élus municipaux (5,0 Mo)</a> constitue un outil d’information et de référence qui devrait répondre à vos questions et vous renseigner sur : </p>
+									<ul>
+										<li>le fonctionnement municipal;</li>
+										<li>les élus municipaux;</li>
+										<li>les gestionnaires municipaux;</li>
+										<li>la gestion et l’administration municipales;</li>
+										<li>la participation des citoyens à la vie municipale;</li>
+										<li>le soutien et le partenariat.</li>
+									</ul>
+								</div>
+							</div>
+						</div>													
+					</div><!-- Accordeon END -->	    					
+					
+				</div>
+			</div>
+			
+		</div><!-- Elections Main -->
+		
+		
+{% endblock %}
+
+
+{% block extra_footer %}
+<script src="/static/js/jquery.accordion.js"></script> 
+<script>
+	
+	// Accordion
+	if ( $('.accordion').length > 0) {
+		$('.accordion').accordion({
+			"transitionSpeed": 500,
+		});		
+	}
+	
+	// Smooth Scroll
+	$('.btn-accordion').on('click', function() { 
+		var page = $(this).attr('href'); 
+		var speed = 750;
+		$('html, body').animate( { scrollTop: $(page).offset().top - 300 }, speed ); 
+		return false;
+	});	
+	
+	// Submenu
+	$('.electionSub').hover(
+		function() {
+			$(this).find('a').addClass('active');
+			$(this).find('ul').addClass('is-active');
+		}, function() {
+			$(this).find('a').removeClass('active');
+			$(this).find('ul').removeClass('is-active');
+		}
+	);	
+
+</script>
+{% endblock %}
+

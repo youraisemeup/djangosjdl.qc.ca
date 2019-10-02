@@ -1,0 +1,25 @@
+{% extends "infotravaux/base.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block meta_title %}Actualités{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+travaux, saint joseph du lac
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+Soyez à l'affût des travaux en cours à Saint-Joseph-du-Lac
+{% endmetablock %}{% endblock %}
+
+{% block title%}Info Travaux{% endblock %}
+{% block main %}
+{% if infotravaux %}
+    <ul>
+    {% for item in infotravaux %}
+        <li><a href="{% url 'infotravaux:detail' item.slug %}">{{ item.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Il n'y a pas de nouvelles pour le moment.</p>
+{% endif %}
+{% endblock %}

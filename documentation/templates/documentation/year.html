@@ -1,0 +1,39 @@
+{% extends "default.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block meta_title %}{{ pageinfos.metatitle }} - {{settings.SITE_TITLE}}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+seances proces-verbaux, conseil municipal, saint joseph du lac
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ pageinfos.metadesc }}
+{% endmetablock %}{% endblock %}
+{% block title%}{{ pageinfos.h1title }}{% endblock %}
+
+{% block pagedocuments %}{% block pagedocumentsmobile %}
+    {{ block.super }}
+    <div class="sidedocuments sideblock">
+        <h4>{{ pageinfos.metatitle}}</h4>
+        <ul>
+            {% regroup archives by publish_date|date:"Y" as docs_by_year %}
+            {% for archive in docs_by_year %}
+                <li><a href="{{pageinfos.relativepath}}{{archive.list.0.publish_date|date:'Y'}}">{{archive.list.0.publish_date|date:'Y'}}</a></li>
+            {% endfor %}
+        </ul>
+        </div>
+{% endblock %}{% endblock %}
+
+{% block main %}
+{% if documents %}
+<h3>{{ documents.0.publish_date|date:'Y' }}</h3>
+    <ul class="nobullets">
+    {% for document in documents %}
+        <li><a href="{{ MEDIA_URL }}{{ document.file }}" class="pdf" target="_blank">{{ document.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Il n'y a pas de documents pour le moment.</p>
+{% endif %}
+{% endblock %}

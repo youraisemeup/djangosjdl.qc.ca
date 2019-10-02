@@ -1,0 +1,13 @@
+{% overextends "admin/base_site.html" %}
+{% load mezzanine_tags i18n %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="{{STATIC_URL}}css/admin.css"/>
+<script>
+        jQuery(function ($) {
+            var adminTitleIcon = 'SJDL';
+            $('div#header div.admin-title').html(adminTitleIcon);
+        });
+</script>
+{% endblock %}

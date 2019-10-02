@@ -1,0 +1,13 @@
+{% extends "default.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block customsidebar %}{% block customsidebarmobile %}
+<div class="sideblock">
+    <h4>Autres travaux en cours</h4>
+    <ul>
+    {% for item in infotravaux %}
+        <li><a href="{% url 'infotravaux:detail' item.slug %}">{{item.title}}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}{% endblock %}

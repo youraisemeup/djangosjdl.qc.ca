@@ -1,0 +1,15 @@
+{% extends "pages/documentpage.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block customsidebar %}{% block customsidebarmobile %}
+    {% if careers %}
+    <div class="sideblock">
+        <h4>Postes disponibles</h4>
+            <ul>
+            {% for job in careers %}
+                <li><a href="{% url 'careers:detail' job.slug %}">{{ job.title }}</a></li>
+            {% endfor %}
+            </ul>
+    </div>
+    {% endif %}
+{% endblock %}{% endblock %}

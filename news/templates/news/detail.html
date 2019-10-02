@@ -1,0 +1,72 @@
+{% extends "news/base.html" %}
+{% load mezzanine_tags keyword_tags staticfiles shortcodes_filters common_tags %}
+
+{% block meta_title %}{{news.meta_title}}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for news as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ news.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block main %}
+
+<p>Publié le : {{ news.publish_date|date:'d F Y' }}</p>
+
+<div class="row">
+        {% if news.ik_image %}
+        <div class="col-xs-12 col-sm-4">
+            <img class="img-responsive" src="{{MEDIA_URL}}{% thumbnail news.ik_image 385 289 %}" alt=""/>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+        {% else %}
+        <div class="col-xs-12">
+        {% endif %}
+            {{news.content|richtext_filters|shortcodes|safe}}
+        </div>
+</div>
+
+
+{% if news.s_link_youtube and news.s_link_youtube|youtubeid %}
+    <h3>Vidéo</h3>
+    <iframe width="420" height="315" src="https://www.youtube.com/embed/{{news.s_link_youtube|youtubeid}}" frameborder="0" allowfullscreen></iframe>
+{% endif %}
+
+{% if news.ik_diapo %}
+<h3>{{ news.ik_diapo }}</h3>
+    <div class="cycle-slideshow"
+        data-slides=" > .slide"
+        data-cycle-fx="fade"
+        date-cycle-speed="500"
+        data-cycle-prev="#prev"
+        data-cycle-next="#next"
+        data-cycle-pager=".slider-pager"
+        data-cycle-pager-template="<span></span>">
+        {% for image in images %}
+        <div class="slide">
+            <div class="imgcontainer">
+                <img src="{{MEDIA_URL}}{% thumbnail image.file 800 600 padding=True %}" alt="" class="img-responsive"/>
+            </div>
+            <div class="caption">
+                {% if image.title %}<p class="title">{{ image.title }}</p>{% endif %}
+                {% if image.description %}<p class="desc">{{ image.description }}</p>{% endif %}
+                {% if image.credits %}<p class="credits">{{ image.credits }}</p>{% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <a id="prev" href="#"></a>
+        <a id="next" href="#"></a>
+        <div class="slider-pager"></div>
+    </div>
+{% endif %}
+
+{% if news.s_link %}
+<a href="{{ news.s_link }}">{% if news.s_link_title %}{{ news.s_link_title }}{% else %}{{ news.s_link }}{% endif %}</a>
+{% endif %}
+
+{% endblock %}

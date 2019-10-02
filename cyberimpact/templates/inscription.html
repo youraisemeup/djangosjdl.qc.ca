@@ -1,0 +1,37 @@
+{% extends "default.html" %}
+
+{% load mezzanine_tags common_tags widget_tweaks shortcodes_filters %}
+
+{% block title %}Inscription à l'infolettre{% endblock %}
+{% block meta_title %}Inscription à l'infolettre{% endblock %}
+{% block main %}
+    {% errors_for form %}
+    <form action="inscription" method="post">
+        {% csrf_token %}
+            <div class="row">
+            {% for field in form %}
+                <div class='{% if field.field.widget|fieldtype == "Textarea" %}
+                    {{ "col-xs-12" }}
+                {% else %}
+                    {{ "col-xs-12 col-sm-6" }}
+                {% endif %}'>
+                    <div class="form-group {% if field.errors %}{{ 'has-error' }}{% endif %}">
+                        <label class="sr-only" for="">{{field.label}}</label>
+                        {{ field.errors }}
+                        {% if field.field.required %}
+                            {# field|attr:"placeholder:*"|add_class:"form-control"#}
+                            {% render_field field class+="form-control" placeholder+="*" required="" %}
+                        {% else %}
+                            {% render_field field class+="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        <div class="row">
+            <div class="form-actions">
+                <input class="btn more" type="submit" value="Envoyer">
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "pages/documentpage.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block pagedocuments %}{% block pagedocumentsmobile %}
+    {{ block.super }}
+    <div class="sidedocuments sideblock">
+        <h4>États financiers</h4>
+        <ul>
+            {% for document in etatsfinanciers %}
+                <li><a href="{{ MEDIA_URL }}{{ document.file }}" target="_blank" class="pdf">{{document.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="sidedocuments sideblock">
+        <h4>Procès-verbaux</h4>
+        <ul>
+            {% regroup seances by publish_date|date:"Y" as docs_by_year %}
+            {% for archive in docs_by_year %}
+                <li><a href="{{pageinfos.path}}{{pageinfos.slug}}/{{archive.list.0.publish_date|date:'Y'}}">{{archive.list.0.publish_date|date:'Y'}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}{% endblock %}

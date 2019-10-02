@@ -1,0 +1,22 @@
+{% extends "default.html" %}
+{% load mezzanine_tags %}
+{% block cutecalendar %}{% block cutecalendarmobile %}
+<div id="cutecalendar" class="">
+    <h2>Calendrier</h2>
+    {% if sidebarevents %}
+        <ul>
+        {% for event in sidebarevents %}
+            <li class="{{event.class}}">
+                <div>
+                    <span class="date">
+                        <span class="day">{{ event.date|date:'d' }}</span>{{ event.date|date:'b' }}
+                    </span>
+                    <a href="{% url 'events:detail' event.event.slug %}">{{ event.event.title|truncatewords:10 }}</a>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    <a class="btn more" href="/evenements">Voir plus</a>
+    {% endif %}
+</div>
+{% endblock %}{% endblock %}

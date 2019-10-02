@@ -1,0 +1,25 @@
+{% extends "careers/base.html" %}
+{% load mezzanine_tags keyword_tags shortcodes_filters %}
+
+{% block meta_title %}{{ job.meta_title }}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for job as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ job.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title%}{{ job.title }}{% endblock %}
+
+{% block main %}
+
+<p>Publié le : {{ job.publish_date|date:'d F Y' }}</p>
+
+<p>{{job.s_text|richtext_filters|shortcodes|safe}}</p>
+
+<a href="mailto:{{settings.CONTACT_CAREERS_EMAIL_FROM}}">Postuler</a>
+
+{% endblock %}

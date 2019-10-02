@@ -1,0 +1,22 @@
+{
+  "name": "Municipalité Saint Joseph du Lac",
+  "version": "1.0.0",
+  "description": "Site Web de la municipalité de Saint Joseph du Lac",
+  "authors": [
+    "Cybergeneration"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "jquery-cycle2": "~2.1.5",
+    "lightbox": "~2.7.1"
+  }
+}

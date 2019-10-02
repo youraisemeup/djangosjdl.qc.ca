@@ -1,0 +1,75 @@
+{% extends "events/base.html" %}
+{% load mezzanine_tags keyword_tags shortcodes_filters common_tags %}
+
+{% block meta_title %}{{ current_event.meta_title }}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for current_event as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ current_event.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title%}{{ current_event.title }}{% endblock %}
+
+{% block main %}
+
+{% if current_event.dt_fin %}
+    <p>Du {{ current_event.dt_debut|date:'d F' }} au {{ current_event.dt_fin|date:'d F' }}</p>
+{% else %}
+    <p>{{ current_event.dt_debut|date:'d F' }}</p>
+{% endif %}
+
+<div class="row">
+    {% if current_event.ik_image %}
+    <div class="col-xs-12 col-sm-4">
+        <img class="img-responsive" src="{{MEDIA_URL}}{% thumbnail current_event.ik_image 385 289 %}" alt=""/>
+    </div>
+    <div class="col-xs-12 col-sm-8">
+    {% else %}
+    <div class="col-xs-12">
+    {% endif %}
+        {{current_event.content|richtext_filters|shortcodes|safe}}
+    </div>
+</div>
+
+{% if current_event.s_link_youtube and current_event.s_link_youtube|youtubeid %}
+    <h3>Vidéo</h3>
+    <iframe width="420" height="315" src="https://www.youtube.com/embed/{{current_event.s_link_youtube|youtubeid}}" frameborder="0" allowfullscreen></iframe>
+{% endif %}
+
+{% if current_event.ik_diapo %}
+<h3>{{ current_event.ik_diapo }}</h3>
+    <div class="cycle-slideshow"
+        data-slides=" > .slide"
+        data-cycle-fx="fade"
+        date-cycle-speed="500"
+        data-cycle-prev="#prev"
+        data-cycle-next="#next"
+        data-cycle-pager=".slider-pager"
+        data-cycle-pager-template="<span></span>">
+        {% for image in images %}
+        <div class="slide">
+            <div class="imgcontainer">
+                <img src="{{MEDIA_URL}}{% thumbnail image.file 800 600 padding=True %}" alt="" class="img-responsive"/>
+            </div>
+            <div class="caption">
+                {% if image.title %}<p class="title">{{ image.title }}</p>{% endif %}
+                {% if image.description %}<p class="desc">{{ image.description }}</p>{% endif %}
+                {% if image.credits %}<p class="credits">{{ image.credits }}</p>{% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <a id="prev" href="#"></a>
+        <a id="next" href="#"></a>
+        <div class="slider-pager"></div>
+    </div>
+{% endif %}
+
+{% if current_event.s_link %}
+<a href="{{ current_event.s_link }}">{% if current_event.s_link_title %}{{ current_event.s_link_title }}{% else %}{{ current_event.s_link }}{% endif %}</a>
+{% endif %}
+
+{% endblock %}

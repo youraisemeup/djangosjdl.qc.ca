@@ -1,0 +1,84 @@
+.topmenu{
+    text-align:right;
+    .nav-top{border-top:1px solid @mainColor;margin:0;}
+    ul{
+        list-style-type:none;
+        li{
+            display:inline-block;
+            padding:0 10px;
+            margin:10px 0;
+            height:14px;
+            border-left:1px solid @mainColor;
+            &:first-child{border:0;}
+            &:last-child{padding-right:0;}
+            a{
+                color:@textColor;font-size:14px;line-height:14px;vertical-align:text-top;
+                transition:color 0.5s ease;
+                &:hover{color:@mainColor;text-decoration:none;}
+            }
+        }
+    }
+    #top-menu-urgences {
+        a {
+            background-color: #eb3229;
+            color: #fff;
+            padding: 8px 8px 6px 29px;
+            margin: -8px 0 -5px 2px;
+            display: inline-block;
+            border-radius: 4px;
+
+            position: relative;
+
+            &:before {
+                content: "";
+                width: 19px;
+                height: 19px;
+                background-image: url(img/icon-urgences.png);
+                background-repeat: no-repeat;
+                display: inline-block;
+
+                position: absolute;
+                left: 6px;
+                top: 5px;
+            }
+        }
+    }
+}
+
+.socialmenu{
+    list-style-type:none;
+    text-align:right;
+    overflow:hidden;
+    ul{margin:10px 0 5px;}
+    li{
+        display:inline-block;
+        vertical-align:middle;
+        border-left:1px solid @textColor;
+        padding:0;
+        width:30px;
+        margin-right:-4px;
+        &:first-child{border:0;width:auto;margin-right:5px;}
+        &:last-child{padding-right:0;}
+        a{
+            display:block;
+            text-indent:9999px;
+            overflow:hidden;
+            margin:0 auto;
+        }
+    }
+    .facebook{
+        background:url(img/icon-facebook.png) no-repeat;
+        width:11px;
+        height:21px;
+
+    }
+    .twitter{background:url(img/icon-twitter.png) no-repeat;width:20px;height:16px;}
+    .instagram{background:url(img/icon-instagram.png) no-repeat;width:18px;height:18px;}
+}
+
+@media(max-width:@screen-xs-max){
+    .nav-top{
+        list-style-type:none;
+        padding:0;
+    }
+}

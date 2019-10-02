@@ -1,0 +1,217 @@
+{% extends "pages/documentpage.html" %}
+
+{% load mezzanine_tags common_tags widget_tweaks shortcodes_filters %}
+
+{% block body_id %}recherchepoubelle{% endblock %}
+
+{% block main %}
+{{ block.super}}
+    <form action="" method="post" id="bacsearch">
+        <p class="details">Entrer un mot clé :</p>
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-tn-12 col-xs-9 col-lg-6 arrow">
+                <div class="form-group">
+                    <label class="sr-only" for="keyword">Mot clé</label>
+                    <input type="text" value="" placeholder="Mot clé" name="keyword" id="keyword" class="form-control" />
+                </div>
+            </div>
+            <div class="col-tn-12 col-xs-3 text-tn-center">
+                <input class="btn more" type="submit" value="Rechercher">
+            </div>
+        </div>
+    </form>
+
+{% if results %}
+    <p class="results">Résultats pour : <span class="keyword">{{keyword}}</span></p>
+    {% if bacbrun %}
+        <h4 class="icon-collecte icon-bacbrun">Bac brun</h4>
+        <div class="details">
+            <ul>
+            {% for brun in bacbrun %}
+                <li>"{{brun.keyword}}"<br/>
+                    {{brun.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            {% if nextevent_bacbrun %}
+            <p class="nextcollecte">La prochaine collecte se fera le : <span class="date">{{nextevent_bacbrun.0.dt_debut|date:'d F Y'}}</span></p>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if bacbleu %}
+        <h4 class="icon-collecte icon-bacbleu">Bac Bleu</h4>
+        <div class="details">
+            <ul>
+            {% for bleu in bacbleu %}
+                <li>"{{bleu.keyword}}"<br/>
+                    {{bleu.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            {% if nextevent_bacbleu %}
+            <p class="nextcollecte">La prochaine collecte se fera le : <span class="date">{{nextevent_bacbleu.0.dt_debut|date:'d F Y'}}</span></p>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if poubelle %}
+        <h4 class="icon-collecte icon-poubelle">Ordures</h4>
+        <div class="details">
+            <ul>
+            {% for vert in poubelle %}
+                <li>"{{vert.keyword}}"<br/>
+                    {{vert.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            {% if nextevent_poubelle %}
+            <p class="nextcollecte">La prochaine collecte se fera le : <span class="date">{{nextevent_poubelle.0.dt_debut|date:'d F Y'}}</span></p>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if ecocentre %}
+        <h4 class="icon-collecte icon-ecocentre">Écocentre</h4>
+        <div class="details">
+            <ul>
+            {% for eco in ecocentre %}
+                <li>"{{eco.keyword}}"<br/>
+                    {{eco.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            {% if nextevent_ecocentre %}
+            <p class="nextcollecte">La prochaine date d'ouverture de l'écocentre sera le : <span class="date">{{nextevent_ecocentre.0.dt_debut|date:'d F Y'}}</span></p>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if grenier %}
+        <h4 class="icon-collecte icon-grenier">Grenier populaire des Basses-Laurentides</h4>
+        <div class="details">
+            <ul>
+            {% for gren in grenier %}
+                <li>"{{gren.keyword}}"<br/>
+                    {{gren.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            <p>Vous souhaitez vous départir d'un vieux meuble qui n'a pas encore atteint sa durée de vie utile? Faites un bon geste pour l'environnement: contactez le <a href="http://grenierpopulaire.com/" target="_blank">Grenier populaire des Basses-Laurentides</a>.</p>
+            <p>L'entreprise se charge de collecter vos vieux meubles à votre domicile pour en faire la revente à ses installations de Saint-Eustache. Mais attention! Seuls les meubles en bon état seront ramassés. </p>
+            <p><strong>Grenier populaire des Basses-Laurentides</strong><br/>
+            217, rue Saint-Laurent<br/>
+            Saint-Eustache<br/>
+            450 623-5891<br/>
+            <a href="http://www.grenierpopulaire.com" target="_blank">www.grenierpopulaire.com</a>
+            </p>
+        </div>
+    {% endif %}
+    {% if comite %}
+        <h4 class="icon-collecte icon-comite">Comité d'action sociale</h4>
+        <div class="details">
+            <ul>
+            {% for com in comite %}
+                <li>"{{com.keyword}}"<br/>
+                    {{com.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            <p><strong>Comité d’action sociale de Saint-Joseph-du-Lac</strong><br/>
+            1028, chemin Principal<br/>
+            Saint-Joseph-du-Lac<br/>
+            450 473-2440
+            </p>
+        </div>
+    {% endif %}
+    {% if joujou %}
+        <h4 class="icon-collecte icon-joujou">Joujou Récup-R</h4>
+        <div class="details">
+            <ul>
+            {% for jeu in joujou %}
+                <li>"{{jeu.keyword}}"<br/>
+                    {{jeu.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            <p>Joujou Récup-R, situé à Saint-Eustache, est un atelier de récupération de jouets. En plus de permettre à des personnes qui vivent avec un handicap intellectuel de travailler, Joujou Récup-R répare vos vieux jouets et leur donne une seconde vie.</p>
+            <p><strong>Joujou Récup-R</strong><br/>
+            342, chemin de la Grande-Côte<br/>
+            Saint-Eustache<br/>
+            450 974-0791
+            </p>
+        </div>
+    {% endif %}
+    {% if arbres %}
+        <h4 class="icon-collecte icon-noel">Arbres de Noël</h4>
+        <div class="details">
+            <ul>
+            {% for arbre in arbres %}
+                <li>Arbres de Noël<br/>
+                    {{arbre.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            <p>Chaque année, la Municipalité organise une collecte des arbres de Noël au début du mois de janvier. Les arbres naturels, dégarnis de leurs décorations et placés en bordure de la route, sont ainsi ramassés et acheminés vers un site de compostage.
+            </p>
+        </div>
+    {% endif %}
+    {% if medicaments %}
+        <h4 class="icon-collecte icon-medoc">Médicaments et seringues périmés</h4>
+        <div class="details">
+            <ul>
+            {% for medoc in medicaments %}
+                <li>{{medoc.keyword}}<br/>
+                    {{medoc.content|safe}}
+                </li>
+            {% endfor %}
+            </ul>
+            <p>Ne les jetez pas. Apportez-les plutôt à votre pharmacien qui les récupère. Les médicaments récupérés sont ensuite détruits à trop haute température afin que les ingrédients actifs qui s’y retrouvent n’endommagent pas la nappe phréatique et l’environnement.</p>
+            <p><strong>Pharmacie Uniprix</strong><br/>
+            3942, chemin d’Oka<br/>
+            Saint-Joseph-du-Lac<br/>
+            450 472-3341</p>
+            <p><strong>Familiprix</strong><br/>
+            3747, chemin d’Oka<br/>
+            Saint-Joseph-du-Lac<br/>
+            450 472-4730
+            </p>
+        </div>
+    {% endif %}
+
+    {% if constantin %}
+    <h4 class="icon-collecte icon-constantin">Constantin Service d'Appareils Ménagers</h4>
+    <div class="details">
+        <ul>
+            {% for c in constantin %}
+            <li>{{c.keyword}}<br/>
+                {{c.content|safe}}
+            </li>
+            {% endfor %}
+        </ul>
+        <p>Depuis le 1er mai 2016, Constantin Service d'Appareils Ménagers effectue, sur le territoire de la municipalité de Saint-Joseph-du-Lac, la collecte des vieux appareils électroménagers réparables afin de leur donner une seconde vie. Notez que ces derniers doivent cependant être entiers, c’est-à-dire munis de portes, poignées, grilles, etc.</p>
+
+            <p>Liste des électroménagers acceptés</p>
+            <ul>
+                <li>cuisinières</li>
+                <li>fours encastrés</li>
+                <li>plaques de cuisson</li>
+                <li>réfrigérateurs</li>
+                <li>congélateurs</li>
+                <li>lave-vaisselle</li>
+                <li>laveuses</li>
+                <li>sécheuses</li>
+            </ul>
+
+            <p>Pour plus de détails ou pour savoir si votre appareil est éligible à la collecte de Constantin Service d'Appareils Ménagers, contactez l'entreprise au 450 472-6832.</p>
+
+            <p><strong>Constantin Service d’Appareils Ménagers inc.</strong><br/>
+            607, chemin d’Oka<br/>
+            Deux-Montagnes<br/>
+            450 472-6832<br/>
+            <a href="http://www.constantinservices.com" target="_blank">www.constantinservices.com</a></p>
+        </p>
+    </div>
+    {% endif %}
+
+{% elif request.POST %}
+    <p>Aucun résultat pour {{keyword}}</p>
+{% endif %}
+{% endblock %}
